@@ -73,10 +73,8 @@ struct Route {
         self.distance = distanceOfResult
     }
     
-    init(concurrentBruteforceOptimalRouteFrom points: [Point]) {
-        #warning("TODO")
-        fatalError()
-    }
+    // TODO
+    // init(concurrentBruteforceOptimalRouteFrom points: [Point]) { }
     
     private static func bruteforceOptimalRoute(from points: inout [Point], startAt: Int, result: inout [Point], distanceOfResult: inout Float) {
         assert(points.elementsAreUnique)
