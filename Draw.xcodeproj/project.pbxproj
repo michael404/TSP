@@ -11,8 +11,28 @@
 		4CAC010620E187F300656825 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC010520E187F300656825 /* ViewController.swift */; };
 		4CAC010820E187F800656825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010720E187F800656825 /* Assets.xcassets */; };
 		4CAC010B20E187F800656825 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010920E187F800656825 /* Main.storyboard */; };
-		4CAC011720E187F800656825 /* DrawTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC011620E187F800656825 /* DrawTests.swift */; };
-		4CAC012220E187F800656825 /* DrawUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC012120E187F800656825 /* DrawUITests.swift */; };
+		4CAC013220E276F800656825 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC013120E276F800656825 /* DrawView.swift */; };
+		4CECB9D620E2A17C0014DF67 /* TSPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9D520E2A17C0014DF67 /* TSPTests.swift */; };
+		4CECB9E120E2A2480014DF67 /* sweden.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CECB9DF20E2A2480014DF67 /* sweden.txt */; };
+		4CECB9E220E2A2480014DF67 /* Zimbabwe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */; };
+		4CECB9E320E2A2570014DF67 /* Zimbabwe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */; };
+		4CECB9E420E2A25A0014DF67 /* sweden.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CECB9DF20E2A2480014DF67 /* sweden.txt */; };
+		4CECB9E620E2A3960014DF67 /* ZimbaweSubset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */; };
+		4CECB9EF20E2A3ED0014DF67 /* ZimbaweSubset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */; };
+		4CECB9F020E2A3F80014DF67 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EB20E2A3D70014DF67 /* Line.swift */; };
+		4CECB9F120E2A3F90014DF67 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EB20E2A3D70014DF67 /* Line.swift */; };
+		4CECB9F220E2A3FB0014DF67 /* Opt2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E920E2A3D60014DF67 /* Opt2.swift */; };
+		4CECB9F320E2A3FB0014DF67 /* Opt2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E920E2A3D60014DF67 /* Opt2.swift */; };
+		4CECB9F420E2A4100014DF67 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EA20E2A3D60014DF67 /* Point.swift */; };
+		4CECB9F520E2A4110014DF67 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EA20E2A3D60014DF67 /* Point.swift */; };
+		4CECB9F620E2A4130014DF67 /* ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EC20E2A3D70014DF67 /* ReadData.swift */; };
+		4CECB9F720E2A4130014DF67 /* ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EC20E2A3D70014DF67 /* ReadData.swift */; };
+		4CECB9F820E2A4150014DF67 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EE20E2A3D70014DF67 /* Route.swift */; };
+		4CECB9F920E2A4160014DF67 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EE20E2A3D70014DF67 /* Route.swift */; };
+		4CECB9FA20E2A4180014DF67 /* RouteExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9ED20E2A3D70014DF67 /* RouteExport.swift */; };
+		4CECB9FB20E2A4180014DF67 /* RouteExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9ED20E2A3D70014DF67 /* RouteExport.swift */; };
+		4CECB9FC20E2A41B0014DF67 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E820E2A3D60014DF67 /* Utils.swift */; };
+		4CECB9FD20E2A41B0014DF67 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E820E2A3D60014DF67 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +61,20 @@
 		4CAC010C20E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC010D20E187F800656825 /* Draw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Draw.entitlements; sourceTree = "<group>"; };
 		4CAC011220E187F800656825 /* DrawTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CAC011620E187F800656825 /* DrawTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTests.swift; sourceTree = "<group>"; };
 		4CAC011820E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC011D20E187F800656825 /* DrawUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CAC012120E187F800656825 /* DrawUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawUITests.swift; sourceTree = "<group>"; };
-		4CAC012320E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CAC013120E276F800656825 /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		4CECB9D520E2A17C0014DF67 /* TSPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPTests.swift; sourceTree = "<group>"; };
+		4CECB9DF20E2A2480014DF67 /* sweden.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweden.txt; sourceTree = "<group>"; };
+		4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zimbabwe.swift; sourceTree = "<group>"; };
+		4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZimbaweSubset.swift; sourceTree = "<group>"; };
+		4CECB9E820E2A3D60014DF67 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4CECB9E920E2A3D60014DF67 /* Opt2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opt2.swift; sourceTree = "<group>"; };
+		4CECB9EA20E2A3D60014DF67 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		4CECB9EB20E2A3D70014DF67 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		4CECB9EC20E2A3D70014DF67 /* ReadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadData.swift; sourceTree = "<group>"; };
+		4CECB9ED20E2A3D70014DF67 /* RouteExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteExport.swift; sourceTree = "<group>"; };
+		4CECB9EE20E2A3D70014DF67 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				4CAC010220E187F300656825 /* Draw */,
+				4CECB9E720E2A3CE0014DF67 /* TSP */,
+				4CECB9DE20E2A2350014DF67 /* Data */,
 				4CAC011520E187F800656825 /* DrawTests */,
-				4CAC012020E187F800656825 /* DrawUITests */,
 				4CAC010120E187F300656825 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,6 +128,7 @@
 			children = (
 				4CAC010320E187F300656825 /* AppDelegate.swift */,
 				4CAC010520E187F300656825 /* ViewController.swift */,
+				4CAC013120E276F800656825 /* DrawView.swift */,
 				4CAC010720E187F800656825 /* Assets.xcassets */,
 				4CAC010920E187F800656825 /* Main.storyboard */,
 				4CAC010C20E187F800656825 /* Info.plist */,
@@ -109,19 +140,34 @@
 		4CAC011520E187F800656825 /* DrawTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CAC011620E187F800656825 /* DrawTests.swift */,
 				4CAC011820E187F800656825 /* Info.plist */,
+				4CECB9D520E2A17C0014DF67 /* TSPTests.swift */,
 			);
 			path = DrawTests;
 			sourceTree = "<group>";
 		};
-		4CAC012020E187F800656825 /* DrawUITests */ = {
+		4CECB9DE20E2A2350014DF67 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				4CAC012120E187F800656825 /* DrawUITests.swift */,
-				4CAC012320E187F800656825 /* Info.plist */,
+				4CECB9DF20E2A2480014DF67 /* sweden.txt */,
+				4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */,
+				4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */,
 			);
-			path = DrawUITests;
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4CECB9E720E2A3CE0014DF67 /* TSP */ = {
+			isa = PBXGroup;
+			children = (
+				4CECB9EB20E2A3D70014DF67 /* Line.swift */,
+				4CECB9E920E2A3D60014DF67 /* Opt2.swift */,
+				4CECB9EA20E2A3D60014DF67 /* Point.swift */,
+				4CECB9EC20E2A3D70014DF67 /* ReadData.swift */,
+				4CECB9EE20E2A3D70014DF67 /* Route.swift */,
+				4CECB9ED20E2A3D70014DF67 /* RouteExport.swift */,
+				4CECB9E820E2A3D60014DF67 /* Utils.swift */,
+			);
+			path = TSP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAC010820E187F800656825 /* Assets.xcassets in Resources */,
+				4CECB9E120E2A2480014DF67 /* sweden.txt in Resources */,
 				4CAC010B20E187F800656825 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CECB9E420E2A25A0014DF67 /* sweden.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +304,16 @@
 			files = (
 				4CAC010620E187F300656825 /* ViewController.swift in Sources */,
 				4CAC010420E187F300656825 /* AppDelegate.swift in Sources */,
+				4CECB9F920E2A4160014DF67 /* Route.swift in Sources */,
+				4CECB9F220E2A3FB0014DF67 /* Opt2.swift in Sources */,
+				4CECB9F720E2A4130014DF67 /* ReadData.swift in Sources */,
+				4CECB9FC20E2A41B0014DF67 /* Utils.swift in Sources */,
+				4CECB9E620E2A3960014DF67 /* ZimbaweSubset.swift in Sources */,
+				4CAC013220E276F800656825 /* DrawView.swift in Sources */,
+				4CECB9F520E2A4110014DF67 /* Point.swift in Sources */,
+				4CECB9FA20E2A4180014DF67 /* RouteExport.swift in Sources */,
+				4CECB9F120E2A3F90014DF67 /* Line.swift in Sources */,
+				4CECB9E220E2A2480014DF67 /* Zimbabwe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +321,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAC011720E187F800656825 /* DrawTests.swift in Sources */,
+				4CECB9D620E2A17C0014DF67 /* TSPTests.swift in Sources */,
+				4CECB9F020E2A3F80014DF67 /* Line.swift in Sources */,
+				4CECB9F420E2A4100014DF67 /* Point.swift in Sources */,
+				4CECB9EF20E2A3ED0014DF67 /* ZimbaweSubset.swift in Sources */,
+				4CECB9F320E2A3FB0014DF67 /* Opt2.swift in Sources */,
+				4CECB9FD20E2A41B0014DF67 /* Utils.swift in Sources */,
+				4CECB9F820E2A4150014DF67 /* Route.swift in Sources */,
+				4CECB9FB20E2A4180014DF67 /* RouteExport.swift in Sources */,
+				4CECB9E320E2A2570014DF67 /* Zimbabwe.swift in Sources */,
+				4CECB9F620E2A4130014DF67 /* ReadData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +338,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAC012220E187F800656825 /* DrawUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +424,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Debug;
 		};
