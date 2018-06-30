@@ -26,9 +26,7 @@ extension Route {
         return result.map { point -> CGPoint in
             let x = Int((point.x * scale).rounded(.toNearestOrEven))
             let y = Int((point.y * scale).rounded(.toNearestOrEven))
-            
-            //TODO: Find out why these need to be flipped here
-            return CGPoint(x: y, y: x)
+            return CGPoint(x: x, y: y)
         }
         
     }

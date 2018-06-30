@@ -93,7 +93,7 @@ class TSPTests: XCTestCase {
     func testReadData() {
         let dataset = readData(from: "sweden")
         XCTAssertEqual(dataset.count, 24978)
-        XCTAssertEqual(dataset.first, Point(55333.3333, 13316.6667))
+        XCTAssertEqual(dataset.first, Point(13316.6667, 55333.3333))
     }
     
     func testSortBasedOnMinimumDistanceToLastElement() {

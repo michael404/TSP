@@ -43,13 +43,6 @@
 			remoteGlobalIDString = 4CAC00FF20E187F300656825;
 			remoteInfo = Draw;
 		};
-		4CAC011E20E187F800656825 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4CAC00F820E187F300656825 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CAC00FF20E187F300656825;
-			remoteInfo = Draw;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +55,6 @@
 		4CAC010D20E187F800656825 /* Draw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Draw.entitlements; sourceTree = "<group>"; };
 		4CAC011220E187F800656825 /* DrawTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC011820E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CAC011D20E187F800656825 /* DrawUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC013120E276F800656825 /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		4CECB9D520E2A17C0014DF67 /* TSPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPTests.swift; sourceTree = "<group>"; };
 		4CECB9DF20E2A2480014DF67 /* sweden.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweden.txt; sourceTree = "<group>"; };
@@ -92,13 +84,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4CAC011A20E187F800656825 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -118,7 +103,6 @@
 			children = (
 				4CAC010020E187F300656825 /* Draw.app */,
 				4CAC011220E187F800656825 /* DrawTests.xctest */,
-				4CAC011D20E187F800656825 /* DrawUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,24 +192,6 @@
 			productReference = 4CAC011220E187F800656825 /* DrawTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4CAC011C20E187F800656825 /* DrawUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4CAC012C20E187F800656825 /* Build configuration list for PBXNativeTarget "DrawUITests" */;
-			buildPhases = (
-				4CAC011920E187F800656825 /* Sources */,
-				4CAC011A20E187F800656825 /* Frameworks */,
-				4CAC011B20E187F800656825 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4CAC011F20E187F800656825 /* PBXTargetDependency */,
-			);
-			name = DrawUITests;
-			productName = DrawUITests;
-			productReference = 4CAC011D20E187F800656825 /* DrawUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,10 +206,6 @@
 						CreatedOnToolsVersion = 10.0;
 					};
 					4CAC011120E187F800656825 = {
-						CreatedOnToolsVersion = 10.0;
-						TestTargetID = 4CAC00FF20E187F300656825;
-					};
-					4CAC011C20E187F800656825 = {
 						CreatedOnToolsVersion = 10.0;
 						TestTargetID = 4CAC00FF20E187F300656825;
 					};
@@ -264,7 +226,6 @@
 			targets = (
 				4CAC00FF20E187F300656825 /* Draw */,
 				4CAC011120E187F800656825 /* DrawTests */,
-				4CAC011C20E187F800656825 /* DrawUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,13 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CECB9E420E2A25A0014DF67 /* sweden.txt in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4CAC011B20E187F800656825 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,13 +288,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4CAC011920E187F800656825 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -348,11 +295,6 @@
 			isa = PBXTargetDependency;
 			target = 4CAC00FF20E187F300656825 /* Draw */;
 			targetProxy = 4CAC011320E187F800656825 /* PBXContainerItemProxy */;
-		};
-		4CAC011F20E187F800656825 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4CAC00FF20E187F300656825 /* Draw */;
-			targetProxy = 4CAC011E20E187F800656825 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -558,44 +500,6 @@
 			};
 			name = Release;
 		};
-		4CAC012D20E187F800656825 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DrawUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = MH.DrawUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = Draw;
-			};
-			name = Debug;
-		};
-		4CAC012E20E187F800656825 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DrawUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = MH.DrawUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = Draw;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -622,15 +526,6 @@
 			buildConfigurations = (
 				4CAC012A20E187F800656825 /* Debug */,
 				4CAC012B20E187F800656825 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4CAC012C20E187F800656825 /* Build configuration list for PBXNativeTarget "DrawUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4CAC012D20E187F800656825 /* Debug */,
-				4CAC012E20E187F800656825 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

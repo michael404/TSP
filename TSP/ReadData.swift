@@ -19,7 +19,7 @@ func parseData(_ text: String) -> [Point] {
     let lines = text.split(separator: "\n")
     let values = lines.map { $0.split(separator: ",") }
     let result = values.reduce(into: [Point]()) { result, next in
-        let point = Point(Float(next[1])!, Float(next[2])!)
+        let point = Point(Float(next[2])!, Float(next[1])!)
         result.append(point)
     }
     return result
