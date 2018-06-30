@@ -56,19 +56,6 @@ class TSPTests: XCTestCase {
         XCTAssertEqual(line.distance, 8.700786049, accuracy: 0.01)
     }
     
-    func testLineEqualityAndHash() {
-        let a = Point(1, 2)
-        let b = Point(3, 4)
-        let line1 = Line(a, b)
-        let line2 = Line(b, a)
-        let line3 = Line(a, Point(5, 6))
-        XCTAssertEqual(line1, line2)
-        XCTAssertEqual(line1.hashValue, line2.hashValue)
-        XCTAssertNotEqual(line1, line3)
-        XCTAssertNotEqual(line2, line3)
-        XCTAssertNotEqual(line1.hashValue, line3.hashValue)
-    }
-    
     func testRouteCollection() {
         let route = Route([Point(1,2), Point(3,4), Point(5,6), Point(3,3)])
         XCTAssertEqual(route.count, 4)

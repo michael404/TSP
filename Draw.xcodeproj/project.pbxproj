@@ -159,12 +159,12 @@
 		4CECB9E720E2A3CE0014DF67 /* TSP */ = {
 			isa = PBXGroup;
 			children = (
-				4CECB9EB20E2A3D70014DF67 /* Line.swift */,
-				4CECB9E920E2A3D60014DF67 /* Opt2.swift */,
-				4CECB9EA20E2A3D60014DF67 /* Point.swift */,
-				4CECB9EC20E2A3D70014DF67 /* ReadData.swift */,
 				4CECB9EE20E2A3D70014DF67 /* Route.swift */,
+				4CECB9E920E2A3D60014DF67 /* Opt2.swift */,
 				4CECB9ED20E2A3D70014DF67 /* RouteExport.swift */,
+				4CECB9EA20E2A3D60014DF67 /* Point.swift */,
+				4CECB9EB20E2A3D70014DF67 /* Line.swift */,
+				4CECB9EC20E2A3D70014DF67 /* ReadData.swift */,
 				4CECB9E820E2A3D60014DF67 /* Utils.swift */,
 			);
 			path = TSP;

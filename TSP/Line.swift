@@ -12,16 +12,3 @@ struct Line {
         return (distanceX * distanceX + distanceY * distanceY).squareRoot()
     }
 }
-
-extension Line: Equatable {
-    static func ==(lhs: Line, rhs: Line) -> Bool {
-        return (lhs.p1 == rhs.p1 && lhs.p2 == rhs.p2)
-            || (lhs.p1 == rhs.p2 && lhs.p2 == rhs.p1)
-    }
-}
-
-extension Line: Hashable {
-    var hashValue: Int {
-        return p1.hashValue ^ p2.hashValue
-    }
-}
