@@ -14,13 +14,16 @@ class DrawView: NSView {
     }
     
     override func draw(_ dirtyRect: NSRect) {
-        let path = NSBezierPath()
+        let path = CGMutablePath()
         path.move(to: points.first!)
-        for point in points.dropFirst() {
-            path.line(to: point)
-        }
-        path.line(to: points.first!)
-        path.stroke()
+        path.addLines(between: points)
+        path.closeSubpath()
+        
+        let context = NSGraphicsContext.current?.cgContext
+        context?.setLineWidth(1.0)
+        context?.setStrokeColor(NSColor.black.cgColor)
+        context?.addPath(path)
+        context?.drawPath(using: .stroke)
     }
     
     func updateDrawView(_ points: [CGPoint]) {

@@ -4,9 +4,7 @@ struct Route {
         
     var points: [Point]
     
-    var distance: Float
-    
-    private static func calculateDistance(points: [Point]) -> Float {
+    var distance: Float {
         var result: Float = 0.0
         for i in points.indices.dropLast() {
             result += Line(points[i], points[i+1]).distance
@@ -16,18 +14,9 @@ struct Route {
         return result
     }
     
-    mutating func recalculateDistance() {
-        self.distance = Route.calculateDistance(points: self.points)
-    }
-    
     init<C: Collection>(_ points: C) where C.Element == Point {
         assert(points.elementsAreUnique)
         self.points = Array(points)
-        guard !points.isEmpty else {
-            self.distance = 0.0
-            return
-        }
-        self.distance = Route.calculateDistance(points: Array(self.points))
     }
     
     init(nearestNeighborFrom points: [Point], startAt: Int) {
@@ -35,7 +24,6 @@ struct Route {
         var points = points
         points.sortBasedOnMinimumDistanceToLastElement(startAt: startAt) { Line($0, $1).distance }
         self.points = points
-        self.distance = Route.calculateDistance(points: points)
     }
     
     init(nearestNeighborWithOptimalStartingPosition points: [Point]) {
@@ -70,7 +58,6 @@ struct Route {
         var points = points
         Route.bruteforceOptimalRoute(from: &points, startAt: 0, result: &result, distanceOfResult: &distanceOfResult)
         self.points = result
-        self.distance = distanceOfResult
     }
     
     // TODO
@@ -79,7 +66,7 @@ struct Route {
     private static func bruteforceOptimalRoute(from points: inout [Point], startAt: Int, result: inout [Point], distanceOfResult: inout Float) {
         assert(points.elementsAreUnique)
         guard startAt != points.endIndex else {
-            let distanceOfCurrentRoute = Route.calculateDistance(points: points)
+            let distanceOfCurrentRoute = Route(points).distance
             if distanceOfCurrentRoute < distanceOfResult {
                 result = points
                 distanceOfResult = distanceOfCurrentRoute
