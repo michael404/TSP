@@ -108,4 +108,21 @@ class TSPTests: XCTestCase {
         }
     }
     
+    func testRouteExporter() {
+        let points = [Point(10.5,20), Point(100,200), Point(40, 80)]
+        let route = Route(points)
+        let exporter = RouteExporter(route: route, max: 100)
+        
+        XCTAssertEqual(exporter.minX, 10.5, accuracy: 0.01)
+        XCTAssertEqual(exporter.minY, 20, accuracy: 0.01)
+        XCTAssertEqual(exporter.scale, 0.555555556, accuracy: 0.01)
+        
+        let exported = exporter.export(route)
+        
+        XCTAssertEqual(exported[0], CGPoint(x: 0, y: 0))
+        XCTAssertEqual(exported[1], CGPoint(x: 50, y: 100))
+        XCTAssertEqual(exported[2], CGPoint(x: 16, y: 33))
+        
+    }
+    
 }

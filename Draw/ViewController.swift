@@ -6,6 +6,7 @@ class ViewController: NSViewController {
     var route: Route!
     var drawView: DrawView!
     var textView: NSText!
+    var exporter: RouteExporter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,7 +14,8 @@ class ViewController: NSViewController {
         
         let data = readData(from: "sweden")
         route = Route(nearestNeighborFrom: data, startAt: 0)
-        drawView = DrawView(frame: frame, points: route.export(max: 800))
+        exporter = RouteExporter(route: route, max: 800)
+        drawView = DrawView(frame: frame, points: exporter.export(route))
         view.addSubview(drawView)
         
         textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 36))
@@ -32,7 +34,7 @@ class ViewController: NSViewController {
                 if counter == updateCount || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
                     DispatchQueue.main.sync { [unowned self] in
-                        self.drawView.updateDrawView(opt2State.route.export(max: 800))
+                        self.drawView.updateDrawView(self.exporter.export(opt2State.route))
                         self.textView.string = "\(opt2State.opt2cycle)\n" + (opt2State.lastAction == .done ? "(Done) " : "") + opt2State.route.distanceDescription
                     }
                 }
