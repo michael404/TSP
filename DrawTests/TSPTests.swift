@@ -64,10 +64,8 @@ class TSPTests: XCTestCase {
     }
     
     func testRouteDistance() {
-        var route = Route([Point(1,2), Point(3,4), Point(5,6), Point(3,3)])
+        let route = Route([Point(1,2), Point(3,4), Point(5,6), Point(3,3)])
         let expected = 11.4985 as Float
-        XCTAssertEqual(route.distance, expected, accuracy: 0.1)
-        route.recalculateDistance()
         XCTAssertEqual(route.distance, expected, accuracy: 0.1)
     }
     
