@@ -35,7 +35,6 @@ class ViewController: NSViewController {
                         // TODO: can the new distance be calculated in the opt2 func without adding a lot of overhead?
                         var route = route
                         route.recalculateDistance()
-                        print(done)
                         switch done {
                         case false:
                             textView.string = route.distanceDescription
