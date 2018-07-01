@@ -28,20 +28,12 @@ class ViewController: NSViewController {
                 counter += 1
                 if counter == updateCount || done {
                     counter = 0
+                    // TODO: can the new distance be calculated in the opt2 func without adding a lot of overhead?
+                    var route = route
+                    route.recalculateDistance()
                     DispatchQueue.main.sync {
-                        let drawView = self.view.subviews[0] as! DrawView
-                        let textView = self.view.subviews[1] as! NSText
-                        drawView.updateDrawView(route.export(max: 800))
-                        // TODO: can the new distance be calculated in the opt2 func without adding a lot of overhead?
-                        var route = route
-                        route.recalculateDistance()
-                        switch done {
-                        case false:
-                            textView.string = route.distanceDescription
-                        case true:
-                            textView.string = "(Done) \(route.distanceDescription)"
-                        }
-                        
+                        (self.view.subviews[0] as! DrawView).updateDrawView(route.export(max: 800))
+                        (self.view.subviews[1] as! NSText).string = (done ? "(Done) " : "") + route.distanceDescription
                     }
                 }
             }
