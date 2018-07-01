@@ -11,7 +11,8 @@ extension Route {
     
     }
     
-    mutating func opt2() {
+    
+    mutating func opt2(onUpdate: (Route, Bool) -> () = { _, _ in }) {
         var updated: Bool
         repeat {
             updated = false
@@ -25,12 +26,15 @@ extension Route {
                         updated = true
                         // We do not update self.distance here, which means it will be incorrect
                         // This is ok as we do not use it
+                        // TODO: This means the closure here gets passed a Route with an incorrect distance!
+                        onUpdate(self, false)
                     }
                 }
             }
         } while updated
         // Recalculate correct self.distance
         recalculateDistance()
+        onUpdate(self, true)
     }
     
 }

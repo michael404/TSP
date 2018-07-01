@@ -2,7 +2,7 @@ import Cocoa
 
 class DrawView: NSView {
     
-    let points: [CGPoint]
+    private var points: [CGPoint]
     
     init(frame frameRect: NSRect, points: [CGPoint]) {
         self.points = points
@@ -21,6 +21,11 @@ class DrawView: NSView {
         }
         path.line(to: points.first!)
         path.stroke()
+    }
+    
+    func updateDrawView(_ points: [CGPoint]) {
+        self.points = points
+        self.setNeedsDisplay(self.frame)
     }
     
 }
