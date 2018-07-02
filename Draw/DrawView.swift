@@ -2,10 +2,10 @@ import Cocoa
 
 class DrawView: NSView {
     
-    private var points: [CGPoint]
+    private var path: CGPath
     
-    init(frame frameRect: NSRect, points: [CGPoint]) {
-        self.points = points
+    init(frame frameRect: NSRect, path: CGPath) {
+        self.path = path
         super.init(frame: frameRect)
     }
     
@@ -14,10 +14,6 @@ class DrawView: NSView {
     }
     
     override func draw(_ dirtyRect: NSRect) {
-        let path = CGMutablePath()
-        path.move(to: points.first!)
-        path.addLines(between: points)
-        path.closeSubpath()
         
         let context = NSGraphicsContext.current?.cgContext
         context?.setLineWidth(1.0)
@@ -26,8 +22,8 @@ class DrawView: NSView {
         context?.drawPath(using: .stroke)
     }
     
-    func updateDrawView(_ points: [CGPoint]) {
-        self.points = points
+    func updateDrawView(_ path: CGPath) {
+        self.path = path
         self.setNeedsDisplay(self.frame)
     }
     

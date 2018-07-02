@@ -15,7 +15,7 @@ class ViewController: NSViewController {
         let data = readData(from: "sweden")
         route = Route(nearestNeighborFrom: data, startAt: 0)
         exporter = RouteExporter(route: route, max: 800)
-        drawView = DrawView(frame: frame, points: exporter.export(route))
+        drawView = DrawView(frame: frame, path: createPath(from: self.route))
         view.addSubview(drawView)
         
         textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 36))
@@ -33,9 +33,11 @@ class ViewController: NSViewController {
                 counter += 1
                 if counter == updateCount || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
+                    let path = self.createPath(from: opt2State.route)
+                    let text = "\(opt2State.opt2cycle)\n" + (opt2State.lastAction == .done ? "(Done) " : "") + opt2State.route.distanceDescription
                     DispatchQueue.main.sync { [unowned self] in
-                        self.drawView.updateDrawView(self.exporter.export(opt2State.route))
-                        self.textView.string = "\(opt2State.opt2cycle)\n" + (opt2State.lastAction == .done ? "(Done) " : "") + opt2State.route.distanceDescription
+                        self.drawView.updateDrawView(path)
+                        self.textView.string = text
                     }
                 }
             }
@@ -46,6 +48,15 @@ class ViewController: NSViewController {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    func createPath(from route: Route) -> CGPath {
+        let points = exporter.export(route)
+        let path = CGMutablePath()
+        path.move(to: points.first!)
+        path.addLines(between: points)
+        path.closeSubpath()
+        return path
     }
 
 
