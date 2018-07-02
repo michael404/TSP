@@ -39,7 +39,7 @@ class ViewController: NSViewController {
             var counter = 0
             self.route.opt2 { opt2State in
                 counter += 1
-                if counter == updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
+                if counter == self.updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
                     let path = self.createPath(from: opt2State.route)
                     let text = "\(opt2State.opt2cycle)\n" + (opt2State.lastAction == .done ? "(Done) " : "") + opt2State.route.distanceDescription
