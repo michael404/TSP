@@ -125,4 +125,114 @@ class TSPTests: XCTestCase {
         
     }
     
+    func testRouteWithNoOrFewPoints() {
+        do {
+            let points: [Point] = []
+            
+            var route = Route(points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 0)
+            
+            route.opt2()
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 0)
+            
+            route = Route(bruteforceOptimalRouteFrom: points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 0)
+            
+            route = Route(nearestNeighborFrom: points, startAt: 0)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 0)
+            
+            route = Route(nearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 0)
+            
+            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 0)
+        }
+        do {
+            let points: [Point] = [Point(1,2)]
+            
+            var route = Route(points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 1)
+            
+            route.opt2()
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 1)
+            
+            route = Route(bruteforceOptimalRouteFrom: points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 1)
+            
+            route = Route(nearestNeighborFrom: points, startAt: 0)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 1)
+            
+            route = Route(nearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 1)
+            
+            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 0.0)
+            XCTAssertEqual(route.count, 1)
+        }
+        do {
+            let points: [Point] = [Point(1,2), Point(4,5)]
+            
+            var route = Route(points)
+            XCTAssertEqual(route.distance, 8.4852, accuracy: 0.01)
+            XCTAssertEqual(route.count, 2)
+            
+            route.opt2()
+            XCTAssertEqual(route.distance, 8.4852, accuracy: 0.01)
+            XCTAssertEqual(route.count, 2)
+            
+            route = Route(bruteforceOptimalRouteFrom: points)
+            XCTAssertEqual(route.distance, 8.4852, accuracy: 0.01)
+            XCTAssertEqual(route.count, 2)
+            
+            route = Route(nearestNeighborFrom: points, startAt: 0)
+            XCTAssertEqual(route.distance, 8.4852, accuracy: 0.01)
+            XCTAssertEqual(route.count, 2)
+            
+            route = Route(nearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 8.4852, accuracy: 0.01)
+            XCTAssertEqual(route.count, 2)
+            
+            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 8.4852, accuracy: 0.01)
+            XCTAssertEqual(route.count, 2)
+        }
+        do {
+            let points: [Point] = [Point(1,2), Point(4,5), Point(4,2)]
+            
+            var route = Route(points)
+            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
+            XCTAssertEqual(route.count, 3)
+            
+            route.opt2()
+            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
+            XCTAssertEqual(route.count, 3)
+
+            route = Route(bruteforceOptimalRouteFrom: points)
+            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
+            XCTAssertEqual(route.count, 3)
+
+            route = Route(nearestNeighborFrom: points, startAt: 0)
+            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
+            XCTAssertEqual(route.count, 3)
+
+            route = Route(nearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
+            XCTAssertEqual(route.count, 3)
+
+            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
+            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
+            XCTAssertEqual(route.count, 3)
+        }
+    }
 }

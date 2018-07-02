@@ -15,6 +15,10 @@ extension Route {
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
         var updated: Bool
         var opt2cycle = 1
+        guard points.count >= 2 else {
+            onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .done))
+            return
+        }
         repeat {
             updated = false
             for i in 1...(self.endIndex-1) {

@@ -5,6 +5,7 @@ struct Route {
     var points: [Point]
     
     var distance: Float {
+        guard points.count >= 2 else { return 0 }
         var result: Float = 0.0
         for i in points.indices.dropLast() {
             result += Line(points[i], points[i+1]).distance
@@ -27,6 +28,10 @@ struct Route {
     }
     
     init(nearestNeighborWithOptimalStartingPosition points: [Point]) {
+        guard points.count >= 2 else {
+            self.init(points)
+            return
+        }
         var optimalRoute = Route(nearestNeighborFrom: points, startAt: 0)
         for start in 1..<points.endIndex {
             let newRoute = Route(nearestNeighborFrom: points, startAt: start)
