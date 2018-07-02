@@ -12,21 +12,29 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         let frame = CGRect(x: 0, y: 0, width: 800, height: 800)
         
-        let data = readData(from: "sweden")
-        route = Route(nearestNeighborFrom: data, startAt: 0)
-        exporter = RouteExporter(route: route, max: 800)
-        drawView = DrawView(frame: frame, path: createPath(from: self.route))
+        drawView = DrawView(frame: frame)
         view.addSubview(drawView)
         
         textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 36))
         textView.isEditable = false
         textView.alignment = .right
         textView.font = NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
-        textView.string = "\n\(route.distanceDescription)"
+        textView.string = "Loading..."
         view.addSubview(textView)
         
         let queue = DispatchQueue.global(qos: .userInitiated)
+        
         queue.async { [unowned self] in
+            
+            let data = readData(from: "sweden")
+            self.route = Route(nearestNeighborFrom: data, startAt: 0)
+            self.exporter = RouteExporter(route: self.route, max: 800)
+            
+            DispatchQueue.main.sync {
+                self.drawView.updateDrawView(self.createPath(from: self.route))
+                self.textView.string = "\n\(self.route.distanceDescription)"
+            }
+            
             let updateCount = 50
             var counter = 0
             self.route.opt2 { opt2State in
@@ -53,7 +61,6 @@ class ViewController: NSViewController {
     func createPath(from route: Route) -> CGPath {
         let points = exporter.export(route)
         let path = CGMutablePath()
-        path.move(to: points.first!)
         path.addLines(between: points)
         path.closeSubpath()
         return path

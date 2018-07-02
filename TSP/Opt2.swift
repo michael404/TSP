@@ -25,7 +25,7 @@ extension Route {
                 
                 // Including endIndex in the range here as a placeholder for the "wrap-around" value
                 for j in (i+1)...self.endIndex {
-                                                            
+                    
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
                         updated = true

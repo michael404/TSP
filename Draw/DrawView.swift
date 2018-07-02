@@ -9,6 +9,12 @@ class DrawView: NSView {
         super.init(frame: frameRect)
     }
     
+    /// Initializes an empty DrawView
+    override init(frame frameRect: NSRect) {
+        self.path = CGMutablePath()
+        super.init(frame: frameRect)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
