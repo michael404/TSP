@@ -10,9 +10,8 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let frame = CGRect(x: 0, y: 0, width: 800, height: 800)
         
-        drawView = DrawView(frame: frame)
+        drawView = DrawView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
         view.addSubview(drawView)
         
         textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 36))
