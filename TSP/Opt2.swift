@@ -29,9 +29,6 @@ extension Route {
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
                         updated = true
-                        // We do not update self.distance here, which means it will be incorrect
-                        // This is ok as we do not use it
-                        // TODO: This means the closure here gets passed a Route with an incorrect distance!
                         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .updated))
                     }
                 }
