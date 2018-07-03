@@ -8,6 +8,8 @@ class ViewController: NSViewController {
     var textView: NSText!
     var exporter: RouteExporter!
     
+    let dataFile = "italy"
+    let flipped = true
     let updateDrawViewOnEveryXChange = 50
     
     override func viewDidLoad() {
@@ -27,7 +29,7 @@ class ViewController: NSViewController {
         
         queue.async { [unowned self] in
             
-            let data = readData(from: "sweden")
+            let data = readData(from: self.dataFile, flipped: self.flipped)
             self.route = Route(nearestNeighborFrom: data, startAt: 0)
             self.exporter = RouteExporter(route: self.route, max: 800)
             

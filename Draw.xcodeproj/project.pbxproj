@@ -12,6 +12,10 @@
 		4CAC010820E187F800656825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010720E187F800656825 /* Assets.xcassets */; };
 		4CAC010B20E187F800656825 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010920E187F800656825 /* Main.storyboard */; };
 		4CAC013220E276F800656825 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC013120E276F800656825 /* DrawView.swift */; };
+		4CBB368120EABB73000E71E3 /* mona-lisa.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CBB368020EABB73000E71E3 /* mona-lisa.txt */; };
+		4CBB368220EABB73000E71E3 /* mona-lisa.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CBB368020EABB73000E71E3 /* mona-lisa.txt */; };
+		4CDF2CD820EAB85B006C645E /* italy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CDF2CD720EAB85B006C645E /* italy.txt */; };
+		4CDF2CD920EAB85B006C645E /* italy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CDF2CD720EAB85B006C645E /* italy.txt */; };
 		4CECB9D620E2A17C0014DF67 /* TSPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9D520E2A17C0014DF67 /* TSPTests.swift */; };
 		4CECB9E120E2A2480014DF67 /* sweden.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CECB9DF20E2A2480014DF67 /* sweden.txt */; };
 		4CECB9E220E2A2480014DF67 /* Zimbabwe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */; };
@@ -56,6 +60,8 @@
 		4CAC011220E187F800656825 /* DrawTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC011820E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC013120E276F800656825 /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		4CBB368020EABB73000E71E3 /* mona-lisa.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mona-lisa.txt"; sourceTree = "<group>"; };
+		4CDF2CD720EAB85B006C645E /* italy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = italy.txt; sourceTree = "<group>"; };
 		4CECB9D520E2A17C0014DF67 /* TSPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPTests.swift; sourceTree = "<group>"; };
 		4CECB9DF20E2A2480014DF67 /* sweden.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweden.txt; sourceTree = "<group>"; };
 		4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zimbabwe.swift; sourceTree = "<group>"; };
@@ -134,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				4CECB9DF20E2A2480014DF67 /* sweden.txt */,
+				4CDF2CD720EAB85B006C645E /* italy.txt */,
+				4CBB368020EABB73000E71E3 /* mona-lisa.txt */,
 				4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */,
 				4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */,
 			);
@@ -236,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAC010820E187F800656825 /* Assets.xcassets in Resources */,
+				4CBB368120EABB73000E71E3 /* mona-lisa.txt in Resources */,
 				4CECB9E120E2A2480014DF67 /* sweden.txt in Resources */,
+				4CDF2CD820EAB85B006C645E /* italy.txt in Resources */,
 				4CAC010B20E187F800656825 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +255,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CBB368220EABB73000E71E3 /* mona-lisa.txt in Resources */,
+				4CDF2CD920EAB85B006C645E /* italy.txt in Resources */,
 				4CECB9E420E2A25A0014DF67 /* sweden.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
