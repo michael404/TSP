@@ -48,7 +48,7 @@ extension Route {
         let group = DispatchGroup()
         
         // First split it in half
-        let split = self.points.splitInTwo()
+        let split = self.splitInTwo()
         var firstHalf = Route(split.0)
         var secondHalf = Route(split.1)
         
@@ -57,8 +57,8 @@ extension Route {
         
         group.wait()
         
-        self.points = firstHalf.points
-        self.points.append(contentsOf: secondHalf.points)
+        self = firstHalf
+        self.points.append(contentsOf: secondHalf)
         opt2(onUpdate: onUpdate)
     }
     
