@@ -1,12 +1,12 @@
 import Cocoa
 
-class DrawView: NSView {
+class TSPMapView: NSView {
     
     private var path: CGPath
     
-    init(frame frameRect: NSRect, path: CGPath) {
+    init(frame: NSRect, path: CGPath) {
         self.path = path
-        super.init(frame: frameRect)
+        super.init(frame: frame)
     }
     
     /// Initializes an empty DrawView

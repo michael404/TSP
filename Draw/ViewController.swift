@@ -4,8 +4,8 @@ import Dispatch
 class ViewController: NSViewController {
     
     var route: Route!
-    var drawView = DrawView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
-    var textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
+    var mapView = TSPMapView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
+    var textView = NSText.makeTSPInfoView(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
     var exporter: RouteExporter!
     let backgroundQueue = DispatchQueue.global(qos: .userInitiated)
     
@@ -16,12 +16,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(drawView)
-        
-        textView.isEditable = false
-        textView.alignment = .right
-        textView.font = NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
-        textView.string = "Loading..."
+        view.addSubview(mapView)
         view.addSubview(textView)
         
         backgroundQueue.async { [unowned self] in
@@ -31,8 +26,8 @@ class ViewController: NSViewController {
             self.exporter = RouteExporter(route: self.route, max: 800)
             
             DispatchQueue.main.sync {
-                self.drawView.updateDrawView(self.createPath(from: self.route))
-                self.textView.string = "\n\(self.route.distanceDescription)"
+                self.mapView.updateDrawView(self.createPath(from: self.route))
+                self.textView.setInitialTSPInfo(route: self.route)
             }
             
             var counter = 0
@@ -42,16 +37,10 @@ class ViewController: NSViewController {
                 if counter == self.updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
                     let path = self.createPath(from: opt2State.route)
-                    let doneText = opt2State.lastAction == .done ? "(Done) " : ""
                     let time = Int(CACurrentMediaTime() - startTime)
-                    let text = """
-                            Time: \(time)
-                            Opt2 cycle: \(opt2State.opt2cycle)
-                            \(doneText) \(opt2State.route.distanceDescription)
-                            """
                     DispatchQueue.main.sync { [unowned self] in
-                        self.drawView.updateDrawView(path)
-                        self.textView.string = text
+                        self.mapView.updateDrawView(path)
+                        self.textView.updateTSPInfo(opt2State: opt2State, time: time)
                     }
                 }
             }
@@ -72,19 +61,4 @@ class ViewController: NSViewController {
         return path
     }
 
-
-}
-
-fileprivate extension Route {
-    
-    var distanceDescription: String {
-        let nf = NumberFormatter()
-        nf.numberStyle = .decimal
-        nf.hasThousandSeparators = true
-        nf.thousandSeparator = " "
-        nf.maximumFractionDigits = 0
-        let distance = NSNumber(value: self.distance)
-        return nf.string(from: distance)!
-    }
-    
 }
