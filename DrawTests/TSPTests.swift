@@ -13,6 +13,17 @@ class TSPTests: XCTestCase {
         XCTAssertEqual(route.distance, 102094.84, accuracy: 0.5)
     }
     
+    func testPerformanceConcurrentOpt2() {
+        let startRoute = Route(nearestNeighborWithOptimalStartingPosition: zimbabwe)
+        XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
+        var route = Route(EmptyCollection())
+        self.measure {
+            route = startRoute
+            route.concurrentOpt2()
+        }
+//        XCTAssertEqual(route.distance, 102094.84, accuracy: 0.5)
+    }
+    
     func testPerformanceNN() {
         var route = Route(EmptyCollection())
         self.measure {
@@ -241,5 +252,26 @@ class TSPTests: XCTestCase {
             XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
             XCTAssertEqual(route.count, 3)
         }
+    }
+    
+    func testSplitInTwo() {
+        do {
+            let split = (0..<10).splitInTwo()
+            XCTAssertEqual(split.0, (0..<5))
+            XCTAssertEqual(split.1, (5..<10))
+        }
+        // Uneven number of items
+        do {
+            let split = (0..<11).splitInTwo()
+            XCTAssertEqual(split.0, (0..<6))
+            XCTAssertEqual(split.1, (6..<11))
+        }
+        // Array
+        do {
+            let split = Array(0..<11).splitInTwo()
+            XCTAssertEqual(split.0, [0,1,2,3,4,5])
+            XCTAssertEqual(split.1, [6,7,8,9,10])
+        }
+        
     }
 }

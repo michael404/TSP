@@ -50,3 +50,12 @@ extension RandomAccessCollection where Self: MutableCollection {
     }
     
 }
+
+extension RandomAccessCollection {
+    
+    func splitInTwo() -> (SubSequence, SubSequence) {
+        let splitIndex = index(endIndex, offsetBy: -count / 2)
+        return (self[startIndex..<splitIndex], self[splitIndex..<endIndex])
+    }
+    
+}

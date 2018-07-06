@@ -1,3 +1,5 @@
+import Foundation
+
 extension Route {
     
     private func distanceIsShorterForReversedRoute(between i: Int, and j: Int) -> Bool {
@@ -37,6 +39,27 @@ extension Route {
             onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .newCycle))
         } while updated
         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .done))
+    }
+    
+    //TODO: Change opt2() to accept an index range
+    mutating func concurrentOpt2(onUpdate: @escaping (Opt2State) -> () = { _ in }) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        let group = DispatchGroup()
+        
+        // First split it in half
+        let split = self.points.splitInTwo()
+        var firstHalf = Route(split.0)
+        var secondHalf = Route(split.1)
+        
+        queue.async(group: group) { firstHalf.opt2(onUpdate: onUpdate) }
+        secondHalf.opt2(onUpdate: onUpdate)
+        
+        group.wait()
+        
+        self.points = firstHalf.points
+        self.points.append(contentsOf: secondHalf.points)
+        opt2(onUpdate: onUpdate)
     }
     
 }

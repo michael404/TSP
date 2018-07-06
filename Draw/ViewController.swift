@@ -8,7 +8,7 @@ class ViewController: NSViewController {
     var textView: NSText!
     var exporter: RouteExporter!
     
-    let dataFile = "italy"
+    let dataFile = "sweden"
     let flipped = true
     let updateDrawViewOnEveryXChange = 50
     
@@ -18,7 +18,7 @@ class ViewController: NSViewController {
         drawView = DrawView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
         view.addSubview(drawView)
         
-        textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 36))
+        textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
         textView.isEditable = false
         textView.alignment = .right
         textView.font = NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
@@ -39,12 +39,19 @@ class ViewController: NSViewController {
             }
             
             var counter = 0
-            self.route.opt2 { opt2State in
+            let startTime = CACurrentMediaTime()
+            self.route.concurrentOpt2 { opt2State in
                 counter += 1
                 if counter == self.updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
                     let path = self.createPath(from: opt2State.route)
-                    let text = "\(opt2State.opt2cycle)\n" + (opt2State.lastAction == .done ? "(Done) " : "") + opt2State.route.distanceDescription
+                    let doneText = opt2State.lastAction == .done ? "(Done) " : ""
+                    let time = Int(CACurrentMediaTime() - startTime)
+                    let text = """
+                            Time: \(time)
+                            Opt2 cycle: \(opt2State.opt2cycle)
+                            \(doneText) \(opt2State.route.distanceDescription)
+                            """
                     DispatchQueue.main.sync { [unowned self] in
                         self.drawView.updateDrawView(path)
                         self.textView.string = text
