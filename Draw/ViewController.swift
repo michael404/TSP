@@ -7,8 +7,9 @@ class ViewController: NSViewController {
     var drawView = DrawView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
     var textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
     var exporter: RouteExporter!
+    let backgroundQueue = DispatchQueue.global(qos: .userInitiated)
     
-    let dataFile = "sweden"
+    let dataFile = "italy"
     let flipped = true
     let updateDrawViewOnEveryXChange = 50
     
@@ -23,9 +24,7 @@ class ViewController: NSViewController {
         textView.string = "Loading..."
         view.addSubview(textView)
         
-        let queue = DispatchQueue.global(qos: .userInitiated)
-        
-        queue.async { [unowned self] in
+        backgroundQueue.async { [unowned self] in
             
             let data = readData(from: self.dataFile, flipped: self.flipped)
             self.route = Route(nearestNeighborFrom: data, startAt: 0)
