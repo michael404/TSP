@@ -20,7 +20,6 @@ class DrawView: NSView {
     }
     
     override func draw(_ dirtyRect: NSRect) {
-        
         let context = NSGraphicsContext.current?.cgContext
         context?.setLineWidth(1.0)
         context?.setStrokeColor(NSColor.black.cgColor)
