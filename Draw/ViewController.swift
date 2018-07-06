@@ -4,8 +4,8 @@ import Dispatch
 class ViewController: NSViewController {
     
     var route: Route!
-    var drawView: DrawView!
-    var textView: NSText!
+    var drawView = DrawView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
+    var textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
     var exporter: RouteExporter!
     
     let dataFile = "sweden"
@@ -15,10 +15,8 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drawView = DrawView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
         view.addSubview(drawView)
         
-        textView = NSText(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
         textView.isEditable = false
         textView.alignment = .right
         textView.font = NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
