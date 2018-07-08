@@ -9,8 +9,8 @@ class ViewController: NSViewController {
     var exporter: RouteExporter!
     let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
-    let dataFile = "mona-lisa"
-    let flipped = false
+    let dataFile = "sweden"
+    let flipped = true
     let updateDrawViewOnEveryXChange = 50
     
     override func viewDidLoad() {
