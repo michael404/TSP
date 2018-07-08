@@ -34,6 +34,8 @@ class ViewController: NSViewController {
             let startTime = CACurrentMediaTime()
             self.route.concurrentOpt2 { opt2State in
                 counter += 1
+                
+                //TODO: Find a way to do this on a background thread, but keep it FIFO
                 if counter == self.updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
                     let path = self.createPath(from: opt2State.route)
