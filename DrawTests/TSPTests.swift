@@ -21,7 +21,7 @@ class TSPTests: XCTestCase {
             route = startRoute
             route.concurrentOpt2()
         }
-//        XCTAssertEqual(route.distance, 102094.84, accuracy: 0.5)
+        XCTAssertEqual(route.distance, 101045.19, accuracy: 0.5)
     }
     
     func testPerformanceNN() {
