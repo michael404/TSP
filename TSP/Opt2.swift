@@ -27,6 +27,8 @@ extension Route {
                     
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
+                        //TODO: Instead of setting updated to true - maintain an indexSet with all the updated incicies
+                        // We only need to check the updated indicies
                         updated = true
                         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .updated))
                     }
@@ -50,8 +52,7 @@ extension Route {
         var secondHalf = Route(split.1)
         
         queue.async(group: group) { firstHalf.opt2(onUpdate: onUpdate) }
-        secondHalf.opt2(onUpdate: onUpdate)
-        
+        queue.async(group: group) { secondHalf.opt2(onUpdate: onUpdate) }
         group.wait()
         
         self = firstHalf
