@@ -3,15 +3,12 @@ import Foundation
 extension Route {
     
     private func distanceIsShorterForReversedRoute(between i: Int, and j: Int) -> Bool {
-        
         let a = self[i-1]
         let b = self[i]
         let c = self[j-1]
         let d = j == endIndex ? self[startIndex] : self[j]
         
-        #warning("TODO: Do a fast path using distanceSquared")
         return Line(a, c).distance + Line(b, d).distance < Line(a, b).distance + Line(c, d).distance
-    
     }
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
