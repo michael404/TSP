@@ -7,8 +7,18 @@ struct Line {
     }
     
     var distance: Float {
-        let distanceX = p2.x - p1.x
-        let distanceY = p2.y - p1.y
-        return (distanceX * distanceX + distanceY * distanceY).squareRoot()
+        @inline(__always)
+        get {
+            return distanceSquared.squareRoot()
+        }
+    }
+    
+    var distanceSquared: Float {
+        @inline(__always)
+        get {
+            let distanceX = p2.x - p1.x
+            let distanceY = p2.y - p1.y
+            return (distanceX * distanceX + distanceY * distanceY)
+        }
     }
 }

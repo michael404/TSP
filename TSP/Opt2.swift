@@ -9,10 +9,10 @@ extension Route {
         let c = self[j-1]
         let d = j == endIndex ? self[startIndex] : self[j]
         
+        #warning("TODO: Do a fast path using distanceSquared")
         return Line(a, c).distance + Line(b, d).distance < Line(a, b).distance + Line(c, d).distance
     
     }
-    
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
         var updated: Bool

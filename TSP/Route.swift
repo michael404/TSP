@@ -23,7 +23,7 @@ struct Route {
     init(nearestNeighborFrom points: [Point], startAt: Int) {
         assert(points.elementsAreUnique)
         var points = points
-        points.sortBasedOnMinimumDistanceToLastElement(startAt: startAt) { Line($0, $1).distance }
+        points.sortBasedOnMinimumDistanceToLastElement(startAt: startAt) { Line($0, $1).distanceSquared }
         self.points = points
     }
     
