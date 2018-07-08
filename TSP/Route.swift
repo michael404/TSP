@@ -1,6 +1,6 @@
 import Dispatch
 
-struct Route {
+struct Route: Equatable {
         
     var points: [Point]
     
@@ -86,15 +86,6 @@ struct Route {
         }
     }
 
-}
-
-extension Route: Equatable {
-    
-    // Custom implemenation that ignores the `distance` property
-    static func ==(lhs: Route, rhs: Route) -> Bool {
-        return lhs.elementsEqual(rhs)
-    }
-    
 }
 
 extension Route: MutableCollection, RandomAccessCollection {

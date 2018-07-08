@@ -34,6 +34,8 @@
 					<real>0.552</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>Local Baseline</string>
+					<key>maxPercentRelativeStandardDeviation</key>
+					<real>30</real>
 				</dict>
 			</dict>
 			<key>testPerformanceNNConcurrent()</key>
