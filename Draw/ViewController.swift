@@ -7,10 +7,10 @@ class ViewController: NSViewController {
     var mapView = TSPMapView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
     var textView = NSText.makeTSPInfoView(frame: NSRect(x: 690, y: 0, width: 110, height: 50))
     var exporter: RouteExporter!
-    let backgroundQueue = DispatchQueue.global(qos: .userInitiated)
+    let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
-    let dataFile = "italy"
-    let flipped = true
+    let dataFile = "mona-lisa"
+    let flipped = false
     let updateDrawViewOnEveryXChange = 50
     
     override func viewDidLoad() {
@@ -19,7 +19,7 @@ class ViewController: NSViewController {
         view.addSubview(mapView)
         view.addSubview(textView)
         
-        backgroundQueue.async { [unowned self] in
+        concurrentQueue.async { [unowned self] in
             
             let data = readData(from: self.dataFile, flipped: self.flipped)
             self.route = Route(nearestNeighborFrom: data, startAt: 0)
