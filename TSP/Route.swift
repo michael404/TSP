@@ -44,7 +44,7 @@ struct Route: Equatable {
     
     init(concurrentRandomNearestNeighborWithOptimalStartingPosition points: [Point]) {
         var optimalRoute = Route(points)
-        let serialQueue = DispatchQueue(label: "TSPEvolution", qos: .userInitiated)
+        let serialQueue = DispatchQueue(label: "Route.concurrentRandomNearestNeighborWithOptimalStartingPosition", qos: .userInitiated)
         let iValues = (0..<points.count)
         DispatchQueue.concurrentPerform(iterations: points.count) { i in
             let newRoute = Route(nearestNeighborFrom: points, startAt: iValues[i])
