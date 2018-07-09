@@ -21,7 +21,7 @@ extension Route {
             return
         }
         
-        var updated: Range<Int>? = 1..<endIndex
+        var updated: Range<Int>? = 0..<endIndex
         repeat {
             guard let lastUpdated = updated else { break }
             updated = nil
