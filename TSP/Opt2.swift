@@ -21,22 +21,22 @@ extension Route {
             return
         }
         
-        var updated: Range<Int>? = 0..<endIndex
+        var updatedRange: Range<Int>? = 0..<endIndex
         repeat {
-            guard let lastUpdated = updated else { break }
-            updated = nil
-            for i in 1..<lastUpdated.upperBound {
-                let jStart = i < lastUpdated.lowerBound ? lastUpdated.lowerBound : (i + 1)
+            guard let lastUpdatedRange = updatedRange else { break }
+            updatedRange = nil
+            for i in 1..<lastUpdatedRange.upperBound {
+                let jStart = i < lastUpdatedRange.lowerBound ? lastUpdatedRange.lowerBound : (i + 1)
                 // Including endIndex in the range here as a placeholder for the "wrap-around" value
-                for j in jStart...lastUpdated.upperBound {
+                for j in jStart...lastUpdatedRange.upperBound {
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
-                        if let _updated = updated {
+                        if let _updated = updatedRange {
                             let newStart = Swift.min(_updated.lowerBound, i)
                             let newEnd = Swift.max(_updated.upperBound, j)
-                            updated = newStart..<newEnd
+                            updatedRange = newStart..<newEnd
                         } else {
-                            updated = i..<j
+                            updatedRange = i..<j
                         }
                         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .updated))
                     }
