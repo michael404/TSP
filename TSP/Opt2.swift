@@ -15,30 +15,32 @@ extension Route {
     }
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
-        guard count > 2 else { return }
-        var updated: (Int, Int)? = (1, endIndex)
+        
         var opt2cycle = 1
+        
         guard points.count >= 2 else {
             onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .done))
             return
         }
+        
+        var updated: Range<Int>? = 1..<endIndex
         repeat {
             let lastUpdated = updated! // Set to non-nil in start and loop breaks if it is non-nill
             //TODO: Use optionals
             updated = nil
-            for i in lastUpdated.0..<lastUpdated.1 {
+            for i in lastUpdated {
                 // Including endIndex in the range here as a placeholder for the "wrap-around" value
-                for j in (i + 1)...lastUpdated.1 {
+                for j in (i + 1)...lastUpdated.upperBound {
 //                    print("i: \(i) j: \(j)")
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
                         
                         if let _updated = updated {
-                            let newStart = Swift.min(_updated.0, i)
-                            let newEnd = Swift.max(_updated.1, j)
-                            updated = (newStart, newEnd)
+                            let newStart = Swift.min(_updated.lowerBound, i)
+                            let newEnd = Swift.max(_updated.upperBound, j)
+                            updated = newStart..<newEnd
                         } else {
-                            updated = (i, j)
+                            updated = i..<j
                         }
                         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .updated))
                     }
