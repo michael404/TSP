@@ -25,16 +25,15 @@ extension Route {
         
         var updated: Range<Int>? = 1..<endIndex
         repeat {
-            let lastUpdated = updated! // Set to non-nil in start and loop breaks if it is non-nill
-            //TODO: Use optionals
+            guard let lastUpdated = updated else { break }
+            print(lastUpdated)
             updated = nil
-            for i in lastUpdated {
+            for i in 1..<lastUpdated.upperBound {
+                let jStart = i <= lastUpdated.lowerBound ? lastUpdated.lowerBound : (i + 1)
                 // Including endIndex in the range here as a placeholder for the "wrap-around" value
-                for j in (i + 1)...lastUpdated.upperBound {
-//                    print("i: \(i) j: \(j)")
+                for j in jStart...lastUpdated.upperBound {
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
-                        
                         if let _updated = updated {
                             let newStart = Swift.min(_updated.lowerBound, i)
                             let newEnd = Swift.max(_updated.upperBound, j)
@@ -45,12 +44,10 @@ extension Route {
                         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .updated))
                     }
                 }
-                
             }
             opt2cycle += 1
             onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .newCycle))
-//            print("\(updated)")
-        } while updated != nil
+        } while true
         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .done))
     }
     
