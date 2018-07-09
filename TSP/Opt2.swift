@@ -4,8 +4,6 @@ extension Route {
     
     private func distanceIsShorterForReversedRoute(between i: Int, and j: Int) -> Bool {
         
-//        if j == endIndex { print("############## J = ENDINDEX. I = \(i) j = \(j). Count \(count)") }
-        
         let a = self[i-1]
         let b = self[i]
         let c = self[j-1]
@@ -26,10 +24,9 @@ extension Route {
         var updated: Range<Int>? = 1..<endIndex
         repeat {
             guard let lastUpdated = updated else { break }
-            print(lastUpdated)
             updated = nil
             for i in 1..<lastUpdated.upperBound {
-                let jStart = i <= lastUpdated.lowerBound ? lastUpdated.lowerBound : (i + 1)
+                let jStart = i < lastUpdated.lowerBound ? lastUpdated.lowerBound : (i + 1)
                 // Including endIndex in the range here as a placeholder for the "wrap-around" value
                 for j in jStart...lastUpdated.upperBound {
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
