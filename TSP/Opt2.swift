@@ -3,6 +3,9 @@ import Foundation
 extension Route {
     
     private func distanceIsShorterForReversedRoute(between i: Int, and j: Int) -> Bool {
+        
+//        if j == endIndex { print("############## J = ENDINDEX. I = \(i) j = \(j). Count \(count)") }
+        
         let a = self[i-1]
         let b = self[i]
         let c = self[j-1]
@@ -12,31 +15,40 @@ extension Route {
     }
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
-        var updated: Bool
+        guard count > 2 else { return }
+        var updated: (Int, Int)? = (1, endIndex)
         var opt2cycle = 1
         guard points.count >= 2 else {
             onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .done))
             return
         }
         repeat {
-            updated = false
-            for i in 1...(self.endIndex-1) {
-                
+            let lastUpdated = updated! // Set to non-nil in start and loop breaks if it is non-nill
+            //TODO: Use optionals
+            updated = nil
+            for i in lastUpdated.0..<lastUpdated.1 {
                 // Including endIndex in the range here as a placeholder for the "wrap-around" value
-                for j in (i+1)...self.endIndex {
-                    
+                for j in (i + 1)...lastUpdated.1 {
+//                    print("i: \(i) j: \(j)")
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
-                        //TODO: Instead of setting updated to true - maintain an indexSet with all the updated incicies
-                        // We only need to check the updated indicies
-                        updated = true
+                        
+                        if let _updated = updated {
+                            let newStart = Swift.min(_updated.0, i)
+                            let newEnd = Swift.max(_updated.1, j)
+                            updated = (newStart, newEnd)
+                        } else {
+                            updated = (i, j)
+                        }
                         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .updated))
                     }
                 }
+                
             }
             opt2cycle += 1
             onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .newCycle))
-        } while updated
+//            print("\(updated)")
+        } while updated != nil
         onUpdate(Opt2State(route: self, opt2cycle: opt2cycle, lastAction: .done))
     }
     
