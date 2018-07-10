@@ -32,7 +32,8 @@ extension Route {
                     if distanceIsShorterForReversedRoute(between: i, and: j) {
                         self.points[i..<j].reverse()
                         if let _updated = updatedRange {
-                            let newStart = Swift.min(_updated.lowerBound, i)
+                            //TODO: Find out if this can ever be 0, which would trap on self[i - 1]
+                            let newStart = Swift.min(_updated.lowerBound, i - 1)
                             let newEnd = Swift.max(_updated.upperBound, j)
                             updatedRange = newStart..<newEnd
                         } else {
