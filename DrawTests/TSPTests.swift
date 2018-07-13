@@ -3,7 +3,7 @@ import XCTest
 class TSPTests: XCTestCase {
     
     func testPerformanceOpt2() {
-        let startRoute = Route(nearestNeighborWithOptimalStartingPosition: zimbabwe)
+        let startRoute = Route(nearestNeighborFrom: zimbabwe, startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
         var route = Route(EmptyCollection())
         self.measure {
@@ -15,7 +15,7 @@ class TSPTests: XCTestCase {
     }
     
     func testPerformanceConcurrentOpt2() {
-        let startRoute = Route(nearestNeighborWithOptimalStartingPosition: zimbabwe)
+        let startRoute = Route(nearestNeighborFrom: zimbabwe, startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
         var route = Route(EmptyCollection())
         self.measure {
