@@ -9,9 +9,8 @@ class ViewController: NSViewController {
     var exporter: RouteExporter!
     let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
-    let dataFile = "sweden"
-    let flipped = true
-    let updateDrawViewOnEveryXChange = 50
+    let dataFile = "mona-lisa"
+    let flipped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,8 @@ class ViewController: NSViewController {
             self.route = Route(nearestNeighborFrom: data, startAt: 0)
             self.exporter = RouteExporter(route: self.route, max: 800)
             
+            let updateDrawViewOnEveryXChange = self.route.count / 100
+            
             DispatchQueue.main.sync {
                 self.mapView.updateDrawView(self.createPath(from: self.route))
                 self.textView.setInitialTSPInfo(route: self.route)
@@ -36,7 +37,7 @@ class ViewController: NSViewController {
                 counter += 1
                 
                 //TODO: Find a way to do this on a background thread, but keep it FIFO
-                if counter == self.updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
+                if counter == updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
                     counter = 0
                     let path = self.createPath(from: opt2State.route)
                     let time = Int(CACurrentMediaTime() - startTime)
