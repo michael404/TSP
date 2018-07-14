@@ -9,8 +9,9 @@ class ViewController: NSViewController {
     var exporter: RouteExporter!
     let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
-    let dataFile = "mona-lisa"
+    let dataFile = "sweden"
     let flipped = false
+    let timeBetweenUIUpdates = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +25,15 @@ class ViewController: NSViewController {
             self.route = Route(nearestNeighborFrom: data, startAt: 0)
             self.exporter = RouteExporter(route: self.route, max: 800)
             
-            let updateDrawViewOnEveryXChange = self.route.count / 100
-            
             DispatchQueue.main.sync {
                 self.mapView.updateDrawView(self.createPath(from: self.route))
                 self.textView.setInitialTSPInfo(route: self.route)
             }
             
-            var counter = 0
             let startTime = CACurrentMediaTime()
-            self.route.concurrentOpt2 { opt2State in
-                counter += 1
-                
-                //TODO: Find a way to do this on a background thread, but keep it FIFO
-                if counter == updateDrawViewOnEveryXChange || opt2State.lastAction == .newCycle || opt2State.lastAction == .done {
-                    counter = 0
+            var lastUpdatedTime = startTime
+            self.route.opt2 { opt2State in
+                if self.shoudUpdateUI(&lastUpdatedTime, opt2State) {
                     let path = self.createPath(from: opt2State.route)
                     let time = Int(CACurrentMediaTime() - startTime)
                     DispatchQueue.main.sync { [unowned self] in
@@ -62,6 +57,17 @@ class ViewController: NSViewController {
         path.addLines(between: points)
         path.closeSubpath()
         return path
+    }
+    
+    func shoudUpdateUI(_ lastUpdatedTime: inout Double, _ opt2State: Opt2State) -> Bool {
+        let currentTime = CACurrentMediaTime()
+        if (lastUpdatedTime + self.timeBetweenUIUpdates) < currentTime
+        || opt2State.lastAction == .newCycle
+        || opt2State.lastAction == .done {
+            lastUpdatedTime = currentTime
+            return true
+        }
+        return false
     }
 
 }
