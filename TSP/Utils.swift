@@ -59,14 +59,3 @@ extension RandomAccessCollection {
     }
     
 }
-
-extension Array {
-    
-    mutating func concurrentMap<BaseElement>(from base: Array<BaseElement>, transform: (BaseElement) -> Element) {
-        precondition(base.count == self.count, "The base array must already contain the same number of elements as self")
-        DispatchQueue.concurrentPerform(iterations: count) { index in
-            self[index] = transform(base[index])
-        }
-    }
-    
-}
