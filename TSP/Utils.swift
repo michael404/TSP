@@ -31,49 +31,6 @@ extension Float {
     }
 }
 
-extension Array {
-    
-    //TODO: Move this to route - makes no sense to make this generic over Array or Collection
-    mutating func sortBasedOnMinimumDistanceToLastElement(startAt: Index, calculateDistance: (Element, Element) -> Float) {
-        
-        swapAt(startIndex, startAt)
-        var unsortedRange = self.indices
-        
-        var distanceBuffer = Array<Float>(repeating: 0.0, count: self.count)
-        
-        while unsortedRange.count > 1 {
-            let lastIndex = unsortedRange.removeFirst()
-            
-            print("start perfomconcurrent")
-            
-            unsortedRange.performConcurrent(threads: 4) { range in
-                for i in range {
-                    distanceBuffer[i] = calculateDistance(self[lastIndex], self[i])
-                }
-            }
-            
-            print("start findin min")
-            
-            var minIndex = -1
-            var minDistance = Float.infinity
-            var index = unsortedRange.lowerBound
-            
-            repeat {
-                if distanceBuffer[index] < minDistance {
-                    minIndex = index
-                    minDistance = distanceBuffer[index]
-                }
-                formIndex(after: &index)
-            } while index != unsortedRange.upperBound
-            
-            print("done")
-            
-            swapAt(unsortedRange.lowerBound, minIndex)
-        }
-    }
-    
-}
-
 extension RandomAccessCollection {
     
     func splitInTwo() -> (SubSequence, SubSequence) {

@@ -9,8 +9,7 @@ class ViewController: NSViewController {
     var exporter: RouteExporter!
     let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
-    let dataFile = "sweden"
-    let flipped = true
+    let data = TSPData.sweden
     let timeBetweenUIUpdates = 1.0
     
     override func viewDidLoad() {
@@ -21,9 +20,7 @@ class ViewController: NSViewController {
         
         concurrentQueue.async { [unowned self] in
             
-            let data = readData(from: self.dataFile, flipped: self.flipped)
-//            self.route = Route(nearestNeighborFrom: data, startAt: 0)
-            self.route = Route(nearestNeighborWithOptimalStartingPosition: data)
+            self.route = Route(nearestNeighborFrom: self.data, startAt: 0)
             self.exporter = RouteExporter(route: self.route, max: 800)
             
             DispatchQueue.main.sync {

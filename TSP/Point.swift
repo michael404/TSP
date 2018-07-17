@@ -2,7 +2,7 @@ import simd
 
 struct Point: Equatable {
     
-    let _point: simd_float2
+    private let _point: simd_float2
     
     var x: Float { return _point.x }
     var y: Float { return _point.y }
@@ -11,11 +11,19 @@ struct Point: Equatable {
         self._point = simd_make_float2(x, y)
     }
     
+    func distance(to other: Point) -> Float {
+        return simd_distance(self._point, other._point)
+    }
+    
+    func distanceSquared(to other: Point) -> Float {
+        return simd_distance_squared(self._point, other._point)
+    }
+    
 }
 
 extension Point: CustomStringConvertible {
     var description: String {
-        return "(\(_point.x), \(_point.y))"
+        return "(\(x), \(y))"
     }
     
     
@@ -23,7 +31,7 @@ extension Point: CustomStringConvertible {
 
 extension Point: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(_point.x)
-        hasher.combine(_point.y)
+        hasher.combine(x)
+        hasher.combine(y)
     }
 }

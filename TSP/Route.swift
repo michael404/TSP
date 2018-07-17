@@ -8,11 +8,9 @@ struct Route: Equatable {
         guard points.count >= 2 else { return 0 }
         var result: Float = 0.0
         for i in points.indices.dropLast() {
-            result += Line(points[i], points[i+1]).distance
+            result += points[i].distance(to: points[i+1])
         }
-        let lastLine = Line(points.last!, points.first!)
-        result += lastLine.distance
-        return result
+        return result + points.last!.distance(to: points.first!)
     }
     
     init<C: Collection>(_ points: C) where C.Element == Point {
@@ -23,7 +21,21 @@ struct Route: Equatable {
     init(nearestNeighborFrom points: [Point], startAt: Int) {
         assert(points.elementsAreUnique)
         var points = points
-        points.sortBasedOnMinimumDistanceToLastElement(startAt: startAt) { Line($0, $1).distanceSquared }
+        points.swapAt(points.startIndex, startAt)
+        
+        for currentIndex in points.indices.dropLast() {
+            var indexOfNearestPoint = currentIndex + 1
+            var distanceToNearestPoint = points[currentIndex].distanceSquared(to: points[indexOfNearestPoint])
+            let indiciesToSearchThrough = points[(indexOfNearestPoint + 1)...].indices
+            for potentialIndexOfNearestPoint in indiciesToSearchThrough {
+                let distanceToPotentialPoint = points[currentIndex].distanceSquared(to: points[potentialIndexOfNearestPoint])
+                guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
+                indexOfNearestPoint = potentialIndexOfNearestPoint
+                distanceToNearestPoint = distanceToPotentialPoint
+            }
+            points.swapAt(currentIndex + 1, indexOfNearestPoint)
+        }
+        
         self.points = points
     }
     

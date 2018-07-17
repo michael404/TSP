@@ -3,7 +3,7 @@ import XCTest
 class TSPTests: XCTestCase {
     
     func testPerformanceOpt2() {
-        let startRoute = Route(nearestNeighborFrom: zimbabwe, startAt: 355)
+        let startRoute = Route(nearestNeighborFrom: TSPData.zimbabwe , startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
         XCTAssertEqual(startRoute.count, zimbabwe.count)
         var route = Route(EmptyCollection())
@@ -12,11 +12,24 @@ class TSPTests: XCTestCase {
             route.opt2()
         }
         XCTAssertEqual(route.distance, 102094.84, accuracy: 0.5)
-        XCTAssertEqual(route.count, zimbabwe.count)
+        XCTAssertEqual(route.count, TSPData.zimbabwe.count)
+    }
+    
+    func testPerformanceOpt2LongRoute() {
+        let startRoute = Route(nearestNeighborFrom: TSPData.italy , startAt: 0)
+        XCTAssertEqual(startRoute.distance, 710974.75, accuracy: 0.5)
+        XCTAssertEqual(startRoute.count, TSPData.italy.count)
+        var route = Route(EmptyCollection())
+        self.measure {
+            route = startRoute
+            route.opt2()
+        }
+        XCTAssertEqual(route.distance, 608482.7, accuracy: 0.5)
+        XCTAssertEqual(route.count, TSPData.italy.count)
     }
     
     func testPerformanceConcurrentOpt2() {
-        let startRoute = Route(nearestNeighborFrom: zimbabwe, startAt: 355)
+        let startRoute = Route(nearestNeighborFrom: TSPData.zimbabwe, startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
         XCTAssertEqual(startRoute.count, zimbabwe.count)
         var route = Route(EmptyCollection())
@@ -25,16 +38,25 @@ class TSPTests: XCTestCase {
             route.concurrentOpt2()
         }
         XCTAssertEqual(route.distance, 101045.19, accuracy: 0.5)
-        XCTAssertEqual(route.count, zimbabwe.count)
+        XCTAssertEqual(route.count, TSPData.zimbabwe.count)
     }
     
     func testPerformanceNN() {
         var route = Route(EmptyCollection())
         self.measure {
-            route = Route(nearestNeighborWithOptimalStartingPosition: zimbabwe)
+            route = Route(nearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
         }
         XCTAssertEqual(route.distance, 112019.36, accuracy: 0.5)
-        XCTAssertEqual(route.count, zimbabwe.count)
+        XCTAssertEqual(route.count, TSPData.zimbabwe.count)
+    }
+    
+    func testPerformanceNNLongRoute() {
+        var route = Route(EmptyCollection())
+        self.measure {
+            route = Route(nearestNeighborFrom: TSPData.sweden, startAt: 0)
+        }
+        XCTAssertEqual(route.distance, 1078975.9, accuracy: 0.5)
+        XCTAssertEqual(route.count, TSPData.sweden.count)
     }
     
     func testPerformanceNNLongRoute() {
@@ -49,24 +71,24 @@ class TSPTests: XCTestCase {
     func testPerformanceNNConcurrent() {
         var route = Route(EmptyCollection())
         self.measure {
-            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: zimbabwe)
+            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
         }
         XCTAssertEqual(route.distance, 112019.36, accuracy: 0.5)
-        XCTAssertEqual(route.count, zimbabwe.count)
+        XCTAssertEqual(route.count, TSPData.zimbabwe.count)
     }
     
     func testPerformanceBruteforce() {
         var route = Route(EmptyCollection())
         self.measure {
-            route = Route(bruteforceOptimalRouteFrom: zimbabweSubset)
+            route = Route(bruteforceOptimalRouteFrom: TSPData.zimbabweSubset)
         }
         XCTAssertEqual(route.distance, 15530.744, accuracy: 0.01)
-        XCTAssertEqual(route.count, zimbabweSubset.count)
+        XCTAssertEqual(route.count, TSPData.zimbabweSubset.count)
     }
     
     func testConcurrentAndNonConcurrentRouteInit() {
-        let route1 = Route(nearestNeighborWithOptimalStartingPosition: zimbabwe)
-        let route2 = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: zimbabwe)
+        let route1 = Route(nearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
+        let route2 = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
         XCTAssertEqual(route1, route2)
     }
     
@@ -75,11 +97,10 @@ class TSPTests: XCTestCase {
         XCTAssertEqual(point.description, "(1.25, 4.0)")
     }
     
-    func testLineDistance() {
+    func testDistance() {
         let a = Point(1.5, 5)
         let b = Point(10, .pi)
-        let line = Line(a, b)
-        XCTAssertEqual(line.distance, 8.700786049, accuracy: 0.01)
+        XCTAssertEqual(a.distance(to: b), 8.700786049, accuracy: 0.01)
     }
     
     func testRouteCollection() {
@@ -116,12 +137,12 @@ class TSPTests: XCTestCase {
     
     func testReadData() {
         do {
-            let dataset = readData(from: "sweden", flipped: false)
+            let dataset = TSPData.readData(from: "sweden", flipped: false)
             XCTAssertEqual(dataset.count, 24978)
             XCTAssertEqual(dataset.first, Point(55333.3333, 13316.6667))
         }
         do {
-            let dataset = readData(from: "sweden", flipped: true)
+            let dataset = TSPData.readData(from: "sweden", flipped: true)
             XCTAssertEqual(dataset.count, 24978)
             XCTAssertEqual(dataset.first, Point(13316.6667, 55333.3333))
         }
@@ -248,43 +269,4 @@ class TSPTests: XCTestCase {
         }
         
     }
-    
-    func testPerformConcurrent() {
-        
-        var set = Set<Range<Int>>()
-        
-        let q = DispatchQueue(label: "test")
-        
-        (0..<10).performConcurrent(threads: 5) { chunk in
-            q.sync {
-                set.insert(chunk)
-            }
-        }
-        
-        let expected: Set<Range<Int>> = [0..<2, 2..<4, 4..<6, 6..<8, 8..<10]
-        
-        XCTAssertEqual(set, expected)
-        
-    }
-    
-    func testIndexed() {
-        do {
-            let indexed = [1,2,3].indexed()
-            for (indexedElement, expectedElement) in zip(indexed, [(0,1), (1,2), (2,3)]) {
-                XCTAssertTrue(indexedElement == expectedElement)
-            }
-        }
-        
-        do {
-            let string = "🐱🐶"
-            let indexed = string.indexed()
-            let firstIndex = string.startIndex
-            let secondIndex = string.index(after: firstIndex)
-            let expected: [(String.Index, Character)] = [(firstIndex, "🐱"), (secondIndex, "🐶")]
-            for (indexedElement, expectedElement) in zip(indexed, expected) {
-                XCTAssertTrue(indexedElement == expectedElement)
-            }
-        }
-    }
-    
 }

@@ -1,6 +1,6 @@
 // Data from http://www.math.uwaterloo.ca/tsp/world/countries.html
 
-let zimbabwe: [Point] = [
+let _zimbabwe: [Point] = [
     Point(15700.0000, 30316.6667),
     Point(16033.3333, 28850.0000),
     Point(16200.0000, 31583.3333),
@@ -930,3 +930,16 @@ let zimbabwe: [Point] = [
     Point(22200.0000, 30783.3333),
     Point(22216.6667, 30000.0000),
     Point(22233.3333, 30933.3333)]
+
+/// A random subset of points from the Zimbawe dataset
+let _zimbabweSubset: [Point] = [
+    Point(20185.277, 28495.0),
+    Point(18916.666, 29833.334),
+    Point(21683.334, 31316.666),
+    Point(17934.445, 31010.555),
+    Point(19500.0, 27733.334),
+    Point(18183.334, 31400.0),
+    Point(21533.334, 31483.334),
+    Point(17816.666, 32766.666),
+    Point(17300.0, 31333.334),
+    Point(19133.334, 27533.334)]

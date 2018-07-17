@@ -9,7 +9,7 @@ extension Route {
         let c = self[j-1]
         let d = j == endIndex ? self[startIndex] : self[j]
         
-        return Line(a, c).distance + Line(b, d).distance < Line(a, b).distance + Line(c, d).distance
+        return a.distance(to: c) + b.distance(to: d) < a.distance(to: b) + c.distance(to: d)
     }
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
