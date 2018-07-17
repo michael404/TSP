@@ -5,6 +5,7 @@ class TSPTests: XCTestCase {
     func testPerformanceOpt2() {
         let startRoute = Route(nearestNeighborFrom: zimbabwe, startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
+        XCTAssertEqual(startRoute.count, zimbabwe.count)
         var route = Route(EmptyCollection())
         self.measure {
             route = startRoute
@@ -17,6 +18,7 @@ class TSPTests: XCTestCase {
     func testPerformanceConcurrentOpt2() {
         let startRoute = Route(nearestNeighborFrom: zimbabwe, startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
+        XCTAssertEqual(startRoute.count, zimbabwe.count)
         var route = Route(EmptyCollection())
         self.measure {
             route = startRoute
@@ -252,18 +254,38 @@ class TSPTests: XCTestCase {
         
     }
     
-    func testConcurrentMapFrom() {
-        
-        var target = Array(repeating: 0, count: 10)
-        
-        let base = ["a", "aa", "a", "aa", "a", "aa", "a", "aa", "a", "aaa"]
-        
-        target.concurrentMap(from: base) { s in
-            return s.count
+//    func testConcurrentMapFrom() {
+//        
+//        var target = Array(repeating: 0, count: 10)
+//        
+//        let base = ["a", "aa", "a", "aa", "a", "aa", "a", "aa", "a", "aaa"]
+//        
+//        target.concurrentMap(from: base) { s in
+//            return s.count
+//        }
+//        
+//        XCTAssertEqual(target, [1,2,1,2,1,2,1,2,1,3])
+//        
+//    }
+    
+    func testIndexed() {
+        do {
+            let indexed = [1,2,3].indexed()
+            for (indexedElement, expectedElement) in zip(indexed, [(0,1), (1,2), (2,3)]) {
+                XCTAssertTrue(indexedElement == expectedElement)
+            }
         }
         
-        XCTAssertEqual(target, [1,2,1,2,1,2,1,2,1,3])
-        
+        do {
+            let string = "🐱🐶"
+            let indexed = string.indexed()
+            let firstIndex = string.startIndex
+            let secondIndex = string.index(after: firstIndex)
+            let expected: [(String.Index, Character)] = [(firstIndex, "🐱"), (secondIndex, "🐶")]
+            for (indexedElement, expectedElement) in zip(indexed, expected) {
+                XCTAssertTrue(indexedElement == expectedElement)
+            }
+        }
     }
     
 }
