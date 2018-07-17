@@ -252,18 +252,4 @@ class TSPTests: XCTestCase {
         
     }
     
-    func testConcurrentMapFrom() {
-        
-        var target = Array(repeating: 0, count: 10)
-        
-        let base = ["a", "aa", "a", "aa", "a", "aa", "a", "aa", "a", "aaa"]
-        
-        target.concurrentMap(from: base) { s in
-            return s.count
-        }
-        
-        XCTAssertEqual(target, [1,2,1,2,1,2,1,2,1,3])
-        
-    }
-    
 }
