@@ -8,10 +8,9 @@ struct Route: Equatable {
         guard points.count >= 2 else { return 0 }
         var result: Float = 0.0
         for i in points.indices.dropLast() {
-            result += Line(points[i], points[i+1]).distance
+            result += points[i].distance(to: points[i+1])
         }
-        let lastLine = Line(points.last!, points.first!)
-        result += lastLine.distance
+        result += points.last!.distance(to: points.first!)
         return result
     }
     
@@ -27,18 +26,16 @@ struct Route: Equatable {
         
         for currentIndex in points.indices.dropLast() {
             var indexOfNearestPoint = currentIndex + 1
-            var distanceToNearestPoint = Line(points[currentIndex], points[indexOfNearestPoint]).distanceSquared
+            var distanceToNearestPoint = points[currentIndex].distanceSquared(to: points[indexOfNearestPoint])
             let indiciesToSearchThrough = points[(indexOfNearestPoint + 1)...].indices
             for potentialIndexOfNearestPoint in indiciesToSearchThrough {
-                let distanceToPotentialPoint = Line(points[currentIndex], points[potentialIndexOfNearestPoint]).distanceSquared
+                let distanceToPotentialPoint = points[currentIndex].distanceSquared(to: points[potentialIndexOfNearestPoint])
                 guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
                 indexOfNearestPoint = potentialIndexOfNearestPoint
                 distanceToNearestPoint = distanceToPotentialPoint
             }
             points.swapAt(currentIndex + 1, indexOfNearestPoint)
         }
-        
-        
         
         self.points = points
     }

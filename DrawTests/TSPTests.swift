@@ -64,11 +64,10 @@ class TSPTests: XCTestCase {
         XCTAssertEqual(point.description, "(1.25, 4.0)")
     }
     
-    func testLineDistance() {
+    func testDistance() {
         let a = Point(1.5, 5)
         let b = Point(10, .pi)
-        let line = Line(a, b)
-        XCTAssertEqual(line.distance, 8.700786049, accuracy: 0.01)
+        XCTAssertEqual(a.distance(to: b), 8.700786049, accuracy: 0.01)
     }
     
     func testRouteCollection() {

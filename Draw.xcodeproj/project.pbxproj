@@ -24,8 +24,6 @@
 		4CECB9E420E2A25A0014DF67 /* sweden.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CECB9DF20E2A2480014DF67 /* sweden.txt */; };
 		4CECB9E620E2A3960014DF67 /* ZimbaweSubset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */; };
 		4CECB9EF20E2A3ED0014DF67 /* ZimbaweSubset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */; };
-		4CECB9F020E2A3F80014DF67 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EB20E2A3D70014DF67 /* Line.swift */; };
-		4CECB9F120E2A3F90014DF67 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EB20E2A3D70014DF67 /* Line.swift */; };
 		4CECB9F220E2A3FB0014DF67 /* Opt2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E920E2A3D60014DF67 /* Opt2.swift */; };
 		4CECB9F320E2A3FB0014DF67 /* Opt2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E920E2A3D60014DF67 /* Opt2.swift */; };
 		4CECB9F420E2A4100014DF67 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EA20E2A3D60014DF67 /* Point.swift */; };
@@ -71,7 +69,6 @@
 		4CECB9E820E2A3D60014DF67 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4CECB9E920E2A3D60014DF67 /* Opt2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opt2.swift; sourceTree = "<group>"; };
 		4CECB9EA20E2A3D60014DF67 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		4CECB9EB20E2A3D70014DF67 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		4CECB9EC20E2A3D70014DF67 /* ReadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadData.swift; sourceTree = "<group>"; };
 		4CECB9ED20E2A3D70014DF67 /* RouteExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteExporter.swift; sourceTree = "<group>"; };
 		4CECB9EE20E2A3D70014DF67 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
@@ -158,7 +155,6 @@
 				4CECB9E920E2A3D60014DF67 /* Opt2.swift */,
 				4CECB9ED20E2A3D70014DF67 /* RouteExporter.swift */,
 				4CECB9EA20E2A3D60014DF67 /* Point.swift */,
-				4CECB9EB20E2A3D70014DF67 /* Line.swift */,
 				4CECB9EC20E2A3D70014DF67 /* ReadData.swift */,
 				4CECB9E820E2A3D60014DF67 /* Utils.swift */,
 			);
@@ -218,6 +214,7 @@
 					};
 					4CAC011120E187F800656825 = {
 						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 4CAC00FF20E187F300656825;
 					};
 				};
 			};
@@ -281,7 +278,6 @@
 				4CAC013220E276F800656825 /* TSPMapView.swift in Sources */,
 				4CECB9F520E2A4110014DF67 /* Point.swift in Sources */,
 				4CECB9FA20E2A4180014DF67 /* RouteExporter.swift in Sources */,
-				4CECB9F120E2A3F90014DF67 /* Line.swift in Sources */,
 				4CECB9E220E2A2480014DF67 /* Zimbabwe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +287,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CECB9D620E2A17C0014DF67 /* TSPTests.swift in Sources */,
-				4CECB9F020E2A3F80014DF67 /* Line.swift in Sources */,
 				4CECB9F420E2A4100014DF67 /* Point.swift in Sources */,
 				4CECB9EF20E2A3ED0014DF67 /* ZimbaweSubset.swift in Sources */,
 				4CECB9F320E2A3FB0014DF67 /* Opt2.swift in Sources */,
@@ -490,6 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = MH.DrawTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Draw.app/Contents/MacOS/Draw";
 			};
 			name = Debug;
 		};
@@ -508,6 +504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = MH.DrawTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Draw.app/Contents/MacOS/Draw";
 			};
 			name = Release;
 		};
