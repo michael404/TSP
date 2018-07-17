@@ -31,26 +31,6 @@ extension Float {
     }
 }
 
-extension RandomAccessCollection where Self: MutableCollection {
-    
-    mutating func sortBasedOnMinimumDistanceToLastElement<Distance: Comparable>(startAt: Index, calculateDistance: (Element, Element) -> Distance) {
-        swapAt(startIndex, startAt)
-        for currentIndex in indices.dropLast() {
-            var indexOfNearestPoint = index(after: currentIndex)
-            var distanceToNearestPoint = calculateDistance(self[currentIndex], self[indexOfNearestPoint])
-            let indiciesToSearchThrough = self[index(after: indexOfNearestPoint)..<self.endIndex].indices
-            for potentialIndexOfNearestPoint in indiciesToSearchThrough {
-                let distanceToPotentialPoint = calculateDistance(self[currentIndex], self[potentialIndexOfNearestPoint])
-                guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
-                indexOfNearestPoint = potentialIndexOfNearestPoint
-                distanceToNearestPoint = distanceToPotentialPoint
-            }
-            swapAt(index(after: currentIndex), indexOfNearestPoint)
-        }
-    }
-    
-}
-
 extension RandomAccessCollection {
     
     func splitInTwo() -> (SubSequence, SubSequence) {

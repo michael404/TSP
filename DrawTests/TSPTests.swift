@@ -116,20 +116,6 @@ class TSPTests: XCTestCase {
         }
     }
     
-    func testSortBasedOnMinimumDistanceToLastElement() {
-        do {
-            var array = [4,2,3,7,3,7,8,9]
-            array.sortBasedOnMinimumDistanceToLastElement(startAt: 7) { return abs($1 - $0) }
-            XCTAssertEqual(array, [9,8,7,7,4,3,3,2])
-        }
-        do {
-            var array = [4,2,3,7,3,7,8,9]
-            array.sortBasedOnMinimumDistanceToLastElement(startAt: 3) { return abs($1 - $0) }
-            XCTAssertEqual(array, [7,7,8,9,4,3,3,2])
-            
-        }
-    }
-    
     func testRouteExporter() {
         let points = [Point(10.5,20), Point(100,200), Point(40, 80)]
         let route = Route(points)

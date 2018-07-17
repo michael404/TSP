@@ -23,7 +23,23 @@ struct Route: Equatable {
     init(nearestNeighborFrom points: [Point], startAt: Int) {
         assert(points.elementsAreUnique)
         var points = points
-        points.sortBasedOnMinimumDistanceToLastElement(startAt: startAt) { Line($0, $1).distanceSquared }
+        points.swapAt(points.startIndex, startAt)
+        
+        for currentIndex in points.indices.dropLast() {
+            var indexOfNearestPoint = currentIndex + 1
+            var distanceToNearestPoint = Line(points[currentIndex], points[indexOfNearestPoint]).distanceSquared
+            let indiciesToSearchThrough = points[(indexOfNearestPoint + 1)...].indices
+            for potentialIndexOfNearestPoint in indiciesToSearchThrough {
+                let distanceToPotentialPoint = Line(points[currentIndex], points[potentialIndexOfNearestPoint]).distanceSquared
+                guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
+                indexOfNearestPoint = potentialIndexOfNearestPoint
+                distanceToNearestPoint = distanceToPotentialPoint
+            }
+            points.swapAt(currentIndex + 1, indexOfNearestPoint)
+        }
+        
+        
+        
         self.points = points
     }
     

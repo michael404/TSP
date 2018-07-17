@@ -10,7 +10,7 @@ class ViewController: NSViewController {
     let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
     let dataFile = "sweden"
-    let flipped = false
+    let flipped = true
     let timeBetweenUIUpdates = 1.0
     
     override func viewDidLoad() {
