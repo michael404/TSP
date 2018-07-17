@@ -10,8 +10,7 @@ struct Route: Equatable {
         for i in points.indices.dropLast() {
             result += points[i].distance(to: points[i+1])
         }
-        result += points.last!.distance(to: points.first!)
-        return result
+        return result + points.last!.distance(to: points.first!)
     }
     
     init<C: Collection>(_ points: C) where C.Element == Point {
