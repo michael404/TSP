@@ -11,12 +11,10 @@ struct Point: Equatable {
         self._point = simd_make_float2(x, y)
     }
     
-    @inline(__always)
     func distance(to other: Point) -> Float {
         return simd_distance(self._point, other._point)
     }
     
-    @inline(__always)
     func distanceSquared(to other: Point) -> Float {
         return simd_distance_squared(self._point, other._point)
     }
