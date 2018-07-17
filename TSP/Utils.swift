@@ -33,23 +33,40 @@ extension Float {
 
 extension Array {
     
-    mutating func sortBasedOnMinimumDistanceToLastElement<Distance: Comparable>(startAt: Index, calculateDistance: (Element, Element) -> Distance) {
+    //TODO: Move this to route - makes no sense to make this generic over Array or Collection
+    mutating func sortBasedOnMinimumDistanceToLastElement(startAt: Index, calculateDistance: (Element, Element) -> Float) {
         
         swapAt(startIndex, startAt)
         var unsortedRange = self.indices
         
+        var distanceBuffer = Array<Float>(repeating: 0.0, count: self.count)
+        
         while unsortedRange.count > 1 {
             let lastIndex = unsortedRange.removeFirst()
-                        
-            let distances = self[unsortedRange].map {
-                calculateDistance(self[lastIndex], $0)
+            
+            print("start perfomconcurrent")
+            
+            unsortedRange.performConcurrent(threads: 4) { range in
+                for i in range {
+                    distanceBuffer[i] = calculateDistance(self[lastIndex], self[i])
+                }
             }
             
-            let (minIndexOffset, _) = distances.indexed().min { (d1, d2) in
-                return d1.1 < d2.1
-            }!
+            print("start findin min")
             
-            let minIndex = self.index(lastIndex, offsetBy: minIndexOffset) + 1
+            var minIndex = -1
+            var minDistance = Float.infinity
+            var index = unsortedRange.lowerBound
+            
+            repeat {
+                if distanceBuffer[index] < minDistance {
+                    minIndex = index
+                    minDistance = distanceBuffer[index]
+                }
+                formIndex(after: &index)
+            } while index != unsortedRange.upperBound
+            
+            print("done")
             
             swapAt(unsortedRange.lowerBound, minIndex)
         }
@@ -66,13 +83,19 @@ extension RandomAccessCollection {
     
 }
 
-extension Array {
+extension RandomAccessCollection {
     
-    mutating func concurrentMap<BaseElement>(from base: ArraySlice<BaseElement>, transform: (BaseElement) -> Element) {
-        precondition(base.count == self.count, "The base array must already contain the same number of elements as self")
-        DispatchQueue.concurrentPerform(iterations: count) { index in
-            self[index] = transform(base[index])
+    func performConcurrent(threads: Int, operation: (SubSequence) -> ()) {
+        let chunkSize = Double(self.count) / Double(threads)
+        DispatchQueue.concurrentPerform(iterations: threads) { thread in
+            let _startOffset = chunkSize * Double(thread)
+            let _endOffset = _startOffset + chunkSize
+            let startOffset = Int(_startOffset.rounded())
+            let endOffset = Int(_endOffset.rounded())
+            let chunk = self[index(startIndex, offsetBy: startOffset)..<index(startIndex, offsetBy: endOffset)]
+            operation(chunk)
         }
+        
     }
     
 }

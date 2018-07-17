@@ -12,6 +12,8 @@
 		4CAC010820E187F800656825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010720E187F800656825 /* Assets.xcassets */; };
 		4CAC010B20E187F800656825 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010920E187F800656825 /* Main.storyboard */; };
 		4CAC013220E276F800656825 /* TSPMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC013120E276F800656825 /* TSPMapView.swift */; };
+		4CB5FE6C20FE0947003E24B4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5FE6B20FE0947003E24B4 /* Data.swift */; };
+		4CB5FE6D20FE09A2003E24B4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5FE6B20FE0947003E24B4 /* Data.swift */; };
 		4CBB368120EABB73000E71E3 /* mona-lisa.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CBB368020EABB73000E71E3 /* mona-lisa.txt */; };
 		4CBB368220EABB73000E71E3 /* mona-lisa.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CBB368020EABB73000E71E3 /* mona-lisa.txt */; };
 		4CD92D4420F00DA7009BAA8D /* TSPInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD92D4320F00DA7009BAA8D /* TSPInfoView.swift */; };
@@ -40,16 +42,6 @@
 		4CECB9FD20E2A41B0014DF67 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E820E2A3D60014DF67 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		4CAC011320E187F800656825 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4CAC00F820E187F300656825 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CAC00FF20E187F300656825;
-			remoteInfo = Draw;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		4CAC010020E187F300656825 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC010320E187F300656825 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +53,7 @@
 		4CAC011220E187F800656825 /* DrawTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC011820E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC013120E276F800656825 /* TSPMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPMapView.swift; sourceTree = "<group>"; };
+		4CB5FE6B20FE0947003E24B4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		4CBB368020EABB73000E71E3 /* mona-lisa.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mona-lisa.txt"; sourceTree = "<group>"; };
 		4CD92D4320F00DA7009BAA8D /* TSPInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPInfoView.swift; sourceTree = "<group>"; };
 		4CDF2CD720EAB85B006C645E /* italy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = italy.txt; sourceTree = "<group>"; };
@@ -147,6 +140,7 @@
 				4CBB368020EABB73000E71E3 /* mona-lisa.txt */,
 				4CECB9E520E2A3960014DF67 /* ZimbaweSubset.swift */,
 				4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */,
+				4CB5FE6B20FE0947003E24B4 /* Data.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -196,7 +190,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4CAC011420E187F800656825 /* PBXTargetDependency */,
 			);
 			name = DrawTests;
 			productName = DrawTests;
@@ -278,6 +271,7 @@
 				4CECB9F720E2A4130014DF67 /* ReadData.swift in Sources */,
 				4CD92D4420F00DA7009BAA8D /* TSPInfoView.swift in Sources */,
 				4CECB9FC20E2A41B0014DF67 /* Utils.swift in Sources */,
+				4CB5FE6C20FE0947003E24B4 /* Data.swift in Sources */,
 				4CECB9E620E2A3960014DF67 /* ZimbaweSubset.swift in Sources */,
 				4CAC013220E276F800656825 /* TSPMapView.swift in Sources */,
 				4CECB9F520E2A4110014DF67 /* Point.swift in Sources */,
@@ -295,6 +289,7 @@
 				4CECB9F020E2A3F80014DF67 /* Line.swift in Sources */,
 				4CECB9F420E2A4100014DF67 /* Point.swift in Sources */,
 				4CECB9EF20E2A3ED0014DF67 /* ZimbaweSubset.swift in Sources */,
+				4CB5FE6D20FE09A2003E24B4 /* Data.swift in Sources */,
 				4CECB9F320E2A3FB0014DF67 /* Opt2.swift in Sources */,
 				4CECB9FD20E2A41B0014DF67 /* Utils.swift in Sources */,
 				4CECB9F820E2A4150014DF67 /* Route.swift in Sources */,
@@ -305,14 +300,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4CAC011420E187F800656825 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4CAC00FF20E187F300656825 /* Draw */;
-			targetProxy = 4CAC011320E187F800656825 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4CAC010920E187F800656825 /* Main.storyboard */ = {
@@ -366,7 +353,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -480,7 +467,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DrawTests/Info.plist;
@@ -500,7 +486,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DrawTests/Info.plist;

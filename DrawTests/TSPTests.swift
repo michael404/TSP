@@ -37,6 +37,15 @@ class TSPTests: XCTestCase {
         XCTAssertEqual(route.count, zimbabwe.count)
     }
     
+    func testPerformanceNNLongRoute() {
+        var route = Route(EmptyCollection())
+        self.measure {
+            route = Route(nearestNeighborWithOptimalStartingPosition: TSPData.sweden)
+        }
+        XCTAssertEqual(route.distance, 1, accuracy: 0.5)
+        XCTAssertEqual(route.count, zimbabwe.count)
+    }
+    
     func testPerformanceNNConcurrent() {
         var route = Route(EmptyCollection())
         self.measure {
@@ -115,20 +124,6 @@ class TSPTests: XCTestCase {
             let dataset = readData(from: "sweden", flipped: true)
             XCTAssertEqual(dataset.count, 24978)
             XCTAssertEqual(dataset.first, Point(13316.6667, 55333.3333))
-        }
-    }
-    
-    func testSortBasedOnMinimumDistanceToLastElement() {
-        do {
-            var array = [4,2,3,7,3,7,8,9]
-            array.sortBasedOnMinimumDistanceToLastElement(startAt: 7) { return abs($1 - $0) }
-            XCTAssertEqual(array, [9,8,7,7,4,3,3,2])
-        }
-        do {
-            var array = [4,2,3,7,3,7,8,9]
-            array.sortBasedOnMinimumDistanceToLastElement(startAt: 3) { return abs($1 - $0) }
-            XCTAssertEqual(array, [7,7,8,9,4,3,3,2])
-            
         }
     }
     
@@ -254,19 +249,23 @@ class TSPTests: XCTestCase {
         
     }
     
-//    func testConcurrentMapFrom() {
-//        
-//        var target = Array(repeating: 0, count: 10)
-//        
-//        let base = ["a", "aa", "a", "aa", "a", "aa", "a", "aa", "a", "aaa"]
-//        
-//        target.concurrentMap(from: base) { s in
-//            return s.count
-//        }
-//        
-//        XCTAssertEqual(target, [1,2,1,2,1,2,1,2,1,3])
-//        
-//    }
+    func testPerformConcurrent() {
+        
+        var set = Set<Range<Int>>()
+        
+        let q = DispatchQueue(label: "test")
+        
+        (0..<10).performConcurrent(threads: 5) { chunk in
+            q.sync {
+                set.insert(chunk)
+            }
+        }
+        
+        let expected: Set<Range<Int>> = [0..<2, 2..<4, 4..<6, 6..<8, 8..<10]
+        
+        XCTAssertEqual(set, expected)
+        
+    }
     
     func testIndexed() {
         do {

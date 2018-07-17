@@ -10,7 +10,7 @@ class ViewController: NSViewController {
     let concurrentQueue = DispatchQueue.global(qos: .userInitiated)
     
     let dataFile = "sweden"
-    let flipped = false
+    let flipped = true
     let timeBetweenUIUpdates = 1.0
     
     override func viewDidLoad() {
@@ -22,7 +22,8 @@ class ViewController: NSViewController {
         concurrentQueue.async { [unowned self] in
             
             let data = readData(from: self.dataFile, flipped: self.flipped)
-            self.route = Route(nearestNeighborFrom: data, startAt: 0)
+//            self.route = Route(nearestNeighborFrom: data, startAt: 0)
+            self.route = Route(nearestNeighborWithOptimalStartingPosition: data)
             self.exporter = RouteExporter(route: self.route, max: 800)
             
             DispatchQueue.main.sync {
@@ -32,7 +33,7 @@ class ViewController: NSViewController {
             
             let startTime = CACurrentMediaTime()
             var lastUpdatedTime = startTime
-            self.route.opt2 { opt2State in
+            self.route.concurrentOpt2 { opt2State in
                 if self.shoudUpdateUI(&lastUpdatedTime, opt2State) {
                     let path = self.createPath(from: opt2State.route)
                     let time = Int(CACurrentMediaTime() - startTime)
