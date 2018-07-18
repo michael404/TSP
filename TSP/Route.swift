@@ -23,15 +23,34 @@ struct Route: Equatable {
         var points = points
         points.swapAt(points.startIndex, startAt)
         
+        let threads = 4
+        
+        var buffer = Array<(Int, Float)>(repeating: (-1, Float.infinity), count: threads)
+        
         for currentIndex in points.indices.dropLast() {
-            var indexOfNearestPoint = currentIndex + 1
-            var distanceToNearestPoint = points[currentIndex].distanceSquared(to: points[indexOfNearestPoint])
-            let indiciesToSearchThrough = points[(indexOfNearestPoint + 1)...].indices
-            for potentialIndexOfNearestPoint in indiciesToSearchThrough {
-                let distanceToPotentialPoint = points[currentIndex].distanceSquared(to: points[potentialIndexOfNearestPoint])
-                guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
-                indexOfNearestPoint = potentialIndexOfNearestPoint
-                distanceToNearestPoint = distanceToPotentialPoint
+                        
+            let indiciesToSearchThrough = points[(currentIndex + 2)...].indices
+            
+            // Find the point with the shortest distance accross in each thread
+            indiciesToSearchThrough.performConcurrent(threads: threads) { threadIndex, indexRange in
+                var indexOfNearestPoint = currentIndex + 1
+                var distanceToNearestPoint = points[currentIndex].distanceSquared(to: points[indexOfNearestPoint])
+                for potentialIndexOfNearestPoint in indexRange {
+                    let distanceToPotentialPoint = points[currentIndex].distanceSquared(to: points[potentialIndexOfNearestPoint])
+                    guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
+                    indexOfNearestPoint = potentialIndexOfNearestPoint
+                    distanceToNearestPoint = distanceToPotentialPoint
+                }
+                buffer[threadIndex] = (indexOfNearestPoint, distanceToNearestPoint) // TODO: make this threadsafe
+            }
+            
+            // Find the point with the shortest distance accross all threads
+            var indexOfNearestPoint = buffer[0].0
+            var distanceToNearestPoint = buffer[0].1
+            for (index, distance) in buffer.dropFirst() {
+                guard distance < distanceToNearestPoint else { continue }
+                indexOfNearestPoint = index
+                distanceToNearestPoint = distance
             }
             points.swapAt(currentIndex + 1, indexOfNearestPoint)
         }

@@ -42,7 +42,7 @@ extension RandomAccessCollection {
 
 extension RandomAccessCollection {
     
-    func performConcurrent(threads: Int, operation: (SubSequence) -> ()) {
+    func performConcurrent(threads: Int, operation: (Int, SubSequence) -> ()) {
         let chunkSize = Double(self.count) / Double(threads)
         DispatchQueue.concurrentPerform(iterations: threads) { thread in
             let _startOffset = chunkSize * Double(thread)
@@ -50,7 +50,7 @@ extension RandomAccessCollection {
             let startOffset = Int(_startOffset.rounded())
             let endOffset = Int(_endOffset.rounded())
             let chunk = self[index(startIndex, offsetBy: startOffset)..<index(startIndex, offsetBy: endOffset)]
-            operation(chunk)
+            operation(thread, chunk)
         }
         
     }

@@ -5,7 +5,7 @@ class TSPTests: XCTestCase {
     func testPerformanceOpt2() {
         let startRoute = Route(nearestNeighborFrom: TSPData.zimbabwe , startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
-        XCTAssertEqual(startRoute.count, zimbabwe.count)
+        XCTAssertEqual(startRoute.count, TSPData.zimbabwe.count)
         var route = Route(EmptyCollection())
         self.measure {
             route = startRoute
@@ -31,7 +31,7 @@ class TSPTests: XCTestCase {
     func testPerformanceConcurrentOpt2() {
         let startRoute = Route(nearestNeighborFrom: TSPData.zimbabwe, startAt: 355)
         XCTAssertEqual(startRoute.distance, 112019.36, accuracy: 0.5)
-        XCTAssertEqual(startRoute.count, zimbabwe.count)
+        XCTAssertEqual(startRoute.count, TSPData.zimbabwe.count)
         var route = Route(EmptyCollection())
         self.measure {
             route = startRoute
@@ -57,15 +57,6 @@ class TSPTests: XCTestCase {
         }
         XCTAssertEqual(route.distance, 1078975.9, accuracy: 0.5)
         XCTAssertEqual(route.count, TSPData.sweden.count)
-    }
-    
-    func testPerformanceNNLongRoute() {
-        var route = Route(EmptyCollection())
-        self.measure {
-            route = Route(nearestNeighborWithOptimalStartingPosition: TSPData.sweden)
-        }
-        XCTAssertEqual(route.distance, 1, accuracy: 0.5)
-        XCTAssertEqual(route.count, zimbabwe.count)
     }
     
     func testPerformanceNNConcurrent() {
