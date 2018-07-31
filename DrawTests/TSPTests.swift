@@ -59,15 +59,6 @@ class TSPTests: XCTestCase {
         XCTAssertEqual(route.count, TSPData.sweden.count)
     }
     
-//    func testPerformanceNNLongRoute() {
-//        var route = Route(EmptyCollection())
-//        self.measure {
-//            route = Route(nearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
-//        }
-//        XCTAssertEqual(route.distance, 1, accuracy: 0.5)
-//        XCTAssertEqual(route.count, TSPData.zimbabwe.count)
-//    }
-    
     func testPerformanceNNConcurrent() {
         var route = Route(EmptyCollection())
         self.measure {
