@@ -46,11 +46,14 @@ struct Route: Equatable {
     init(nearestNeighborWithOptimalStartingPositionFrom unsortedPoints: [Point]) {
         self.points = unsortedPoints
         let serialQueue = DispatchQueue(label: "TSP", qos: .userInitiated)
+        var lowestDistance = Float.infinity
         DispatchQueue.concurrentPerform(iterations: points.count) { i in
             let newRoute = Route(nearestNeighborFrom: unsortedPoints, startAt: i)
+            let newRouteDistance = newRoute.distance
             serialQueue.sync {
-                if newRoute.distance < self.distance {
+                if newRouteDistance < lowestDistance {
                     self = newRoute
+                    lowestDistance = newRouteDistance
                 }
             }
         }
