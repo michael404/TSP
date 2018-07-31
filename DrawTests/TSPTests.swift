@@ -16,7 +16,7 @@ class TSPTests: XCTestCase {
     }
     
     func testPerformanceOpt2LongRoute() {
-        let startRoute = Route(nearestNeighborFrom: TSPData.italy , startAt: 0)
+        let startRoute = Route(nearestNeighborFrom: TSPData.italy)
         XCTAssertEqual(startRoute.distance, 710974.75, accuracy: 0.5)
         XCTAssertEqual(startRoute.count, TSPData.italy.count)
         var route = Route(EmptyCollection())
@@ -44,7 +44,7 @@ class TSPTests: XCTestCase {
     func testPerformanceNN() {
         var route = Route(EmptyCollection())
         self.measure {
-            route = Route(nearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
+            route = Route(nearestNeighborWithOptimalStartingPositionFrom: TSPData.zimbabwe)
         }
         XCTAssertEqual(route.distance, 112019.36, accuracy: 0.5)
         XCTAssertEqual(route.count, TSPData.zimbabwe.count)
@@ -62,7 +62,7 @@ class TSPTests: XCTestCase {
     func testPerformanceNNConcurrent() {
         var route = Route(EmptyCollection())
         self.measure {
-            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
+            route = Route(nearestNeighborWithOptimalStartingPositionFrom: TSPData.zimbabwe)
         }
         XCTAssertEqual(route.distance, 112019.36, accuracy: 0.5)
         XCTAssertEqual(route.count, TSPData.zimbabwe.count)
@@ -75,12 +75,6 @@ class TSPTests: XCTestCase {
         }
         XCTAssertEqual(route.distance, 15530.744, accuracy: 0.01)
         XCTAssertEqual(route.count, TSPData.zimbabweSubset.count)
-    }
-    
-    func testConcurrentAndNonConcurrentRouteInit() {
-        let route1 = Route(nearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
-        let route2 = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: TSPData.zimbabwe)
-        XCTAssertEqual(route1, route2)
     }
     
     func testPointDescription() {
@@ -176,11 +170,7 @@ class TSPTests: XCTestCase {
             XCTAssertEqual(route.distance, 0.0)
             XCTAssertEqual(route.count, 0)
             
-            route = Route(nearestNeighborWithOptimalStartingPosition: points)
-            XCTAssertEqual(route.distance, 0.0)
-            XCTAssertEqual(route.count, 0)
-            
-            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
+            route = Route(nearestNeighborWithOptimalStartingPositionFrom: points)
             XCTAssertEqual(route.distance, 0.0)
             XCTAssertEqual(route.count, 0)
         }
@@ -203,11 +193,7 @@ class TSPTests: XCTestCase {
             XCTAssertEqual(route.distance, 0.0)
             XCTAssertEqual(route.count, 1)
             
-            route = Route(nearestNeighborWithOptimalStartingPosition: points)
-            XCTAssertEqual(route.distance, 0.0)
-            XCTAssertEqual(route.count, 1)
-            
-            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
+            route = Route(nearestNeighborWithOptimalStartingPositionFrom: points)
             XCTAssertEqual(route.distance, 0.0)
             XCTAssertEqual(route.count, 1)
         }
@@ -230,13 +216,10 @@ class TSPTests: XCTestCase {
             XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
             XCTAssertEqual(route.count, 3)
 
-            route = Route(nearestNeighborWithOptimalStartingPosition: points)
+            route = Route(nearestNeighborWithOptimalStartingPositionFrom: points)
             XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
             XCTAssertEqual(route.count, 3)
 
-            route = Route(concurrentRandomNearestNeighborWithOptimalStartingPosition: points)
-            XCTAssertEqual(route.distance, 10.2426, accuracy: 0.01)
-            XCTAssertEqual(route.count, 3)
         }
     }
     

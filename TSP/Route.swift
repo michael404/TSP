@@ -26,9 +26,8 @@ struct Route: Equatable {
         
         points.swapAt(startIndex, startAt)
         
-        for lastSortedIndex in indices.dropLast() {
+        for (lastSortedIndex, firstUnsortedIndex) in zip(indices, indices.dropFirst()) {
             
-            let firstUnsortedIndex = lastSortedIndex + 1
             var nearestPointIndex = -1
             var nearestPointDistance = Float.infinity
             
@@ -44,46 +43,26 @@ struct Route: Equatable {
         }
     }
     
-    init(nearestNeighborWithOptimalStartingPosition points: [Point]) {
-        guard points.count >= 2 else {
-            self.init(points)
-            return
-        }
-        var optimalRoute = Route(nearestNeighborFrom: points, startAt: 0)
-        for start in 1..<points.endIndex {
-            let newRoute = Route(nearestNeighborFrom: points, startAt: start)
-            if newRoute.distance < optimalRoute.distance {
-                optimalRoute = newRoute
-            }
-        }
-        self = optimalRoute
-    }
-    
-    init(concurrentRandomNearestNeighborWithOptimalStartingPosition points: [Point]) {
-        var optimalRoute = Route(points)
-        let serialQueue = DispatchQueue(label: "Route.concurrentRandomNearestNeighborWithOptimalStartingPosition", qos: .userInitiated)
-        let iValues = (0..<points.count)
+    init(nearestNeighborWithOptimalStartingPositionFrom unsortedPoints: [Point]) {
+        self.points = unsortedPoints
+        let serialQueue = DispatchQueue(label: "TSP", qos: .userInitiated)
         DispatchQueue.concurrentPerform(iterations: points.count) { i in
-            let newRoute = Route(nearestNeighborFrom: points, startAt: iValues[i])
+            let newRoute = Route(nearestNeighborFrom: unsortedPoints, startAt: i)
             serialQueue.sync {
-                if newRoute.distance < optimalRoute.distance {
-                    optimalRoute = newRoute
+                if newRoute.distance < self.distance {
+                    self = newRoute
                 }
             }
         }
-        self = optimalRoute
     }
     
-    init(bruteforceOptimalRouteFrom points: [Point]) {
+    init(bruteforceOptimalRouteFrom unsortedPoints: [Point]) {
         var result: [Point] = []
         var distanceOfResult = Float.infinity
-        var points = points
+        var points = unsortedPoints
         Route.bruteforceOptimalRoute(from: &points, startAt: 0, result: &result, distanceOfResult: &distanceOfResult)
         self.points = result
     }
-    
-    // TODO
-    // init(concurrentBruteforceOptimalRouteFrom points: [Point]) { }
     
     private static func bruteforceOptimalRoute(from points: inout [Point], startAt: Int, result: inout [Point], distanceOfResult: inout Float) {
         guard startAt != points.endIndex else {
