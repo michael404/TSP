@@ -18,10 +18,11 @@ struct Route: Equatable {
         self.points = Array(points)
     }
     
-    init(nearestNeighborFrom points: [Point], startAt: Int) {
-        assert(points.elementsAreUnique)
-        var points = points
-        points.swapAt(points.startIndex, startAt)
+    init(nearestNeighborFrom unsortedPoints: [Point], startAt: Int = 0) {
+        
+        assert(unsortedPoints.elementsAreUnique)
+        self.points = unsortedPoints
+        points.swapAt(self.points.startIndex, startAt)
         
         for currentIndex in points.indices.dropLast() {
             var indexOfNearestPoint = currentIndex + 1
@@ -35,8 +36,6 @@ struct Route: Equatable {
             }
             points.swapAt(currentIndex + 1, indexOfNearestPoint)
         }
-        
-        self.points = points
     }
     
     init(nearestNeighborWithOptimalStartingPosition points: [Point]) {
