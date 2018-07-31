@@ -260,4 +260,28 @@ class TSPTests: XCTestCase {
         }
         
     }
+    
+    func testPerformConcurrent() {
+        for _ in 0..<20 {
+            let rangeCount = Int.random(in: 10..<100)
+            let threadCount = Int.random(in: 5..<rangeCount)
+            var rangeCheck = Array<Bool>(repeating: false, count: rangeCount)
+            var threadCheck = Array<Bool>(repeating: false, count: threadCount)
+            let q = DispatchQueue(label: "test")
+            (0..<rangeCount).performConcurrent(threads: threadCount) { thread, range in
+                q.sync {
+                    XCTAssertFalse(threadCheck[thread], "Expected index \(thread) of threadCheck to be false")
+                    threadCheck[thread] = true
+                    for i in range {
+                        XCTAssertFalse(rangeCheck[i], "Expected index \(i) of rangeCheck to be false")
+                        rangeCheck[i] = true
+                    }
+                }
+            }
+            XCTAssertEqual(rangeCheck, Array<Bool>(repeating: true, count: rangeCount), "Did not set one of the indicies when using rangeCount \(rangeCount) and threadcount \(threadCount). First non-set index: \(rangeCheck.firstIndex(of: false)!)")
+            
+            XCTAssertEqual(threadCheck, Array<Bool>(repeating: true, count: threadCount))
+        }
+    }
+    
 }

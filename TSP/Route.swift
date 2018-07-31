@@ -29,12 +29,15 @@ struct Route: Equatable {
         
         for currentIndex in points.indices.dropLast() {
                         
-            let indiciesToSearchThrough = points[(currentIndex + 2)...].indices
+            let indiciesToSearchThrough = (currentIndex + 2)..<points.endIndex
             
+            //TODO: This should be handled by the outer loop
+            guard !indiciesToSearchThrough.isEmpty else { break }
+                        
             // Find the point with the shortest distance accross in each thread
             indiciesToSearchThrough.performConcurrent(threads: threads) { threadIndex, indexRange in
-                var indexOfNearestPoint = currentIndex + 1
-                var distanceToNearestPoint = points[currentIndex].distanceSquared(to: points[indexOfNearestPoint])
+                var indexOfNearestPoint = -1
+                var distanceToNearestPoint = Float.infinity
                 for potentialIndexOfNearestPoint in indexRange {
                     let distanceToPotentialPoint = points[currentIndex].distanceSquared(to: points[potentialIndexOfNearestPoint])
                     guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
@@ -43,7 +46,7 @@ struct Route: Equatable {
                 }
                 buffer[threadIndex] = (indexOfNearestPoint, distanceToNearestPoint) // TODO: make this threadsafe
             }
-            
+                        
             // Find the point with the shortest distance accross all threads
             var indexOfNearestPoint = buffer[0].0
             var distanceToNearestPoint = buffer[0].1
