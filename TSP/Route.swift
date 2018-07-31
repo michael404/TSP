@@ -21,20 +21,26 @@ struct Route: Equatable {
     init(nearestNeighborFrom unsortedPoints: [Point], startAt: Int = 0) {
         
         assert(unsortedPoints.elementsAreUnique)
-        self.points = unsortedPoints
-        points.swapAt(self.points.startIndex, startAt)
         
-        for currentIndex in points.indices.dropLast() {
-            var indexOfNearestPoint = currentIndex + 1
-            var distanceToNearestPoint = points[currentIndex].distanceSquared(to: points[indexOfNearestPoint])
-            let indiciesToSearchThrough = points[(indexOfNearestPoint + 1)...].indices
-            for potentialIndexOfNearestPoint in indiciesToSearchThrough {
-                let distanceToPotentialPoint = points[currentIndex].distanceSquared(to: points[potentialIndexOfNearestPoint])
-                guard distanceToPotentialPoint < distanceToNearestPoint else { continue }
-                indexOfNearestPoint = potentialIndexOfNearestPoint
-                distanceToNearestPoint = distanceToPotentialPoint
+        self.points = unsortedPoints
+        
+        points.swapAt(startIndex, startAt)
+        
+        for lastSortedIndex in indices.dropLast() {
+            
+            let firstUnsortedIndex = lastSortedIndex + 1
+            var nearestPointIndex = -1
+            var nearestPointDistance = Float.infinity
+            
+            for indexCandidate in firstUnsortedIndex..<endIndex {
+                let distanceCandidate = points[lastSortedIndex].distanceSquared(to: points[indexCandidate])
+                if distanceCandidate < nearestPointDistance {
+                    nearestPointIndex = indexCandidate
+                    nearestPointDistance = distanceCandidate
+                }
             }
-            points.swapAt(currentIndex + 1, indexOfNearestPoint)
+            
+            points.swapAt(firstUnsortedIndex, nearestPointIndex)
         }
     }
     
@@ -109,5 +115,6 @@ extension Route: MutableCollection, RandomAccessCollection {
     var startIndex: Int { return points.startIndex }
     
     var endIndex: Int { return points.endIndex }
+    
 }
 
