@@ -67,8 +67,13 @@ struct Route: Equatable {
         self.points = result
     }
     
-    private static func bruteforceOptimalRoute(from points: inout [Point], startAt: Int, result: inout [Point], distanceOfResult: inout Float) {
-        guard startAt != points.endIndex else {
+    private static func bruteforceOptimalRoute(
+        from points: inout [Point],
+        startAt: Int,
+        result: inout [Point],
+        distanceOfResult: inout Float
+        ) {
+        if startAt == points.endIndex {
             let distanceOfCurrentRoute = Route(points).distance
             if distanceOfCurrentRoute < distanceOfResult {
                 result = points
