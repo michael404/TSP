@@ -73,6 +73,7 @@ struct Route: Equatable {
         result: inout [Point],
         distanceOfResult: inout Float
         ) {
+        #warning("I think this is implemenation is wrong. Find test data that is correct before trying to fix it.")
         if startAt == points.endIndex {
             let distanceOfCurrentRoute = Route(points).distance
             if distanceOfCurrentRoute < distanceOfResult {
