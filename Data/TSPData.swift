@@ -13,17 +13,19 @@ enum TSPData {
 extension TSPData {
     
     static func readData(from file: String, flipped: Bool = false) -> [Point] {
-        guard let filePath = Bundle.main.url(forResource: file, withExtension: "txt") else {
-            fatalError("Could not find file '\(file).txt in bundle'")
-        }
+        let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+            .appendingPathComponent("TSP.app")
+            .appendingPathComponent("Contents")
+            .appendingPathComponent("Resources")
+            .appendingPathComponent("\(file).txt")
         do {
-            let data = try Data.init(contentsOf: filePath)
+            let data = try Data.init(contentsOf: url)
             guard let text = String.init(data: data, encoding: .utf8) else {
                 fatalError("Could not parse file contents as utf8.")
             }
             return parseData(text, flipped: flipped)
         } catch {
-            fatalError("Could not parse contents of file. \(error.localizedDescription)")
+            fatalError("Could not open file \"\(url)\". Error: \(error)")
         }
     }
     

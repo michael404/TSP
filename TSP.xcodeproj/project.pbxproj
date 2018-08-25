@@ -37,25 +37,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4CC250E32110D1130081035F /* PBXContainerItemProxy */ = {
+		4CA5E4D821313DDC0004CADF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CAC00F820E187F300656825 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4CAC00FF20E187F300656825;
-			remoteInfo = Draw;
+			remoteInfo = TSP;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C1DD92220FE1CB50030529B /* TSPData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPData.swift; sourceTree = "<group>"; };
-		4CAC010020E187F300656825 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CAC010020E187F300656825 /* TSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC010320E187F300656825 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CAC010520E187F300656825 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4CAC010720E187F800656825 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CAC010A20E187F800656825 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4CAC010C20E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC010D20E187F800656825 /* Draw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Draw.entitlements; sourceTree = "<group>"; };
-		4CAC011220E187F800656825 /* DrawTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CAC011220E187F800656825 /* TSPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC011820E187F800656825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC013120E276F800656825 /* TSPMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPMapView.swift; sourceTree = "<group>"; };
 		4CBB368020EABB73000E71E3 /* mona-lisa.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mona-lisa.txt"; sourceTree = "<group>"; };
@@ -92,10 +92,10 @@
 		4CAC00F720E187F300656825 = {
 			isa = PBXGroup;
 			children = (
-				4CAC010220E187F300656825 /* Draw */,
+				4CAC010220E187F300656825 /* App */,
 				4CECB9E720E2A3CE0014DF67 /* TSP */,
 				4CECB9DE20E2A2350014DF67 /* Data */,
-				4CAC011520E187F800656825 /* DrawTests */,
+				4CAC011520E187F800656825 /* Tests */,
 				4CAC010120E187F300656825 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,13 +103,13 @@
 		4CAC010120E187F300656825 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4CAC010020E187F300656825 /* Draw.app */,
-				4CAC011220E187F800656825 /* DrawTests.xctest */,
+				4CAC010020E187F300656825 /* TSP.app */,
+				4CAC011220E187F800656825 /* TSPTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4CAC010220E187F300656825 /* Draw */ = {
+		4CAC010220E187F300656825 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				4CAC010320E187F300656825 /* AppDelegate.swift */,
@@ -121,16 +121,16 @@
 				4CAC010C20E187F800656825 /* Info.plist */,
 				4CAC010D20E187F800656825 /* Draw.entitlements */,
 			);
-			path = Draw;
+			path = App;
 			sourceTree = "<group>";
 		};
-		4CAC011520E187F800656825 /* DrawTests */ = {
+		4CAC011520E187F800656825 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				4CAC011820E187F800656825 /* Info.plist */,
 				4CECB9D520E2A17C0014DF67 /* TSPTests.swift */,
 			);
-			path = DrawTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		4CECB9DE20E2A2350014DF67 /* Data */ = {
@@ -160,9 +160,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4CAC00FF20E187F300656825 /* Draw */ = {
+		4CAC00FF20E187F300656825 /* TSP */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4CAC012620E187F800656825 /* Build configuration list for PBXNativeTarget "Draw" */;
+			buildConfigurationList = 4CAC012620E187F800656825 /* Build configuration list for PBXNativeTarget "TSP" */;
 			buildPhases = (
 				4CAC00FC20E187F300656825 /* Sources */,
 				4CAC00FD20E187F300656825 /* Frameworks */,
@@ -172,14 +172,14 @@
 			);
 			dependencies = (
 			);
-			name = Draw;
+			name = TSP;
 			productName = Draw;
-			productReference = 4CAC010020E187F300656825 /* Draw.app */;
+			productReference = 4CAC010020E187F300656825 /* TSP.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4CAC011120E187F800656825 /* DrawTests */ = {
+		4CAC011120E187F800656825 /* TSPTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4CAC012920E187F800656825 /* Build configuration list for PBXNativeTarget "DrawTests" */;
+			buildConfigurationList = 4CAC012920E187F800656825 /* Build configuration list for PBXNativeTarget "TSPTests" */;
 			buildPhases = (
 				4CAC010E20E187F800656825 /* Sources */,
 				4CAC010F20E187F800656825 /* Frameworks */,
@@ -188,11 +188,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				4CC250E42110D1130081035F /* PBXTargetDependency */,
+				4CA5E4D921313DDC0004CADF /* PBXTargetDependency */,
 			);
-			name = DrawTests;
+			name = TSPTests;
 			productName = DrawTests;
-			productReference = 4CAC011220E187F800656825 /* DrawTests.xctest */;
+			productReference = 4CAC011220E187F800656825 /* TSPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -210,11 +210,10 @@
 					};
 					4CAC011120E187F800656825 = {
 						CreatedOnToolsVersion = 10.0;
-						TestTargetID = 4CAC00FF20E187F300656825;
 					};
 				};
 			};
-			buildConfigurationList = 4CAC00FB20E187F300656825 /* Build configuration list for PBXProject "Draw" */;
+			buildConfigurationList = 4CAC00FB20E187F300656825 /* Build configuration list for PBXProject "TSP" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -227,8 +226,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4CAC00FF20E187F300656825 /* Draw */,
-				4CAC011120E187F800656825 /* DrawTests */,
+				4CAC00FF20E187F300656825 /* TSP */,
+				4CAC011120E187F800656825 /* TSPTests */,
 			);
 		};
 /* End PBXProject section */
@@ -295,10 +294,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4CC250E42110D1130081035F /* PBXTargetDependency */ = {
+		4CA5E4D921313DDC0004CADF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4CAC00FF20E187F300656825 /* Draw */;
-			targetProxy = 4CC250E32110D1130081035F /* PBXContainerItemProxy */;
+			target = 4CAC00FF20E187F300656825 /* TSP */;
+			targetProxy = 4CA5E4D821313DDC0004CADF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -435,12 +434,12 @@
 				CODE_SIGN_ENTITLEMENTS = Draw/Draw.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Draw/Info.plist;
+				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MH.Draw;
+				PRODUCT_BUNDLE_IDENTIFIER = MH.TSP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -453,12 +452,12 @@
 				CODE_SIGN_ENTITLEMENTS = Draw/Draw.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Draw/Info.plist;
+				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MH.Draw;
+				PRODUCT_BUNDLE_IDENTIFIER = MH.TSP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -470,16 +469,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DrawTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MH.DrawTests;
+				PRODUCT_BUNDLE_IDENTIFIER = MH.TSPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Draw.app/Contents/MacOS/Draw";
 			};
 			name = Debug;
 		};
@@ -489,23 +487,22 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DrawTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MH.DrawTests;
+				PRODUCT_BUNDLE_IDENTIFIER = MH.TSPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Draw.app/Contents/MacOS/Draw";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4CAC00FB20E187F300656825 /* Build configuration list for PBXProject "Draw" */ = {
+		4CAC00FB20E187F300656825 /* Build configuration list for PBXProject "TSP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CAC012420E187F800656825 /* Debug */,
@@ -514,7 +511,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4CAC012620E187F800656825 /* Build configuration list for PBXNativeTarget "Draw" */ = {
+		4CAC012620E187F800656825 /* Build configuration list for PBXNativeTarget "TSP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CAC012720E187F800656825 /* Debug */,
@@ -523,7 +520,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4CAC012920E187F800656825 /* Build configuration list for PBXNativeTarget "DrawTests" */ = {
+		4CAC012920E187F800656825 /* Build configuration list for PBXNativeTarget "TSPTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CAC012A20E187F800656825 /* Debug */,
