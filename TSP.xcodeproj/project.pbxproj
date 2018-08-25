@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		4C1DD92320FE1CB50030529B /* TSPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1DD92220FE1CB50030529B /* TSPData.swift */; };
 		4C1DD92420FE1DBC0030529B /* TSPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1DD92220FE1CB50030529B /* TSPData.swift */; };
+		4CA5E4E1213157390004CADF /* TSPPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5E4E0213157390004CADF /* TSPPerfTests.swift */; };
+		4CA5E4E8213157B60004CADF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EE20E2A3D70014DF67 /* Route.swift */; };
+		4CA5E4E9213157B80004CADF /* Opt2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E920E2A3D60014DF67 /* Opt2.swift */; };
+		4CA5E4EA213157BB0004CADF /* RouteExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9ED20E2A3D70014DF67 /* RouteExporter.swift */; };
+		4CA5E4EB213157BD0004CADF /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9EA20E2A3D60014DF67 /* Point.swift */; };
+		4CA5E4EC213157C00004CADF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E820E2A3D60014DF67 /* Utils.swift */; };
+		4CA5E4ED213157C20004CADF /* TSPData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1DD92220FE1CB50030529B /* TSPData.swift */; };
+		4CA5E4EE213157C50004CADF /* Zimbabwe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECB9E020E2A2480014DF67 /* Zimbabwe.swift */; };
 		4CAC010420E187F300656825 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC010320E187F300656825 /* AppDelegate.swift */; };
 		4CAC010620E187F300656825 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC010520E187F300656825 /* ViewController.swift */; };
 		4CAC010820E187F800656825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC010720E187F800656825 /* Assets.xcassets */; };
@@ -44,10 +52,20 @@
 			remoteGlobalIDString = 4CAC00FF20E187F300656825;
 			remoteInfo = TSP;
 		};
+		4CA5E4E3213157390004CADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CAC00F820E187F300656825 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CAC00FF20E187F300656825;
+			remoteInfo = TSP;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C1DD92220FE1CB50030529B /* TSPData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPData.swift; sourceTree = "<group>"; };
+		4CA5E4DE213157390004CADF /* TSPPerfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSPPerfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CA5E4E0213157390004CADF /* TSPPerfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPPerfTests.swift; sourceTree = "<group>"; };
+		4CA5E4E2213157390004CADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAC010020E187F300656825 /* TSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAC010320E187F300656825 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CAC010520E187F300656825 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +90,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4CA5E4DB213157390004CADF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CAC00FD20E187F300656825 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CA5E4DF213157390004CADF /* PerfTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CA5E4E0213157390004CADF /* TSPPerfTests.swift */,
+				4CA5E4E2213157390004CADF /* Info.plist */,
+			);
+			path = PerfTests;
+			sourceTree = "<group>";
+		};
 		4CAC00F720E187F300656825 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +130,7 @@
 				4CECB9E720E2A3CE0014DF67 /* TSP */,
 				4CECB9DE20E2A2350014DF67 /* Data */,
 				4CAC011520E187F800656825 /* Tests */,
+				4CA5E4DF213157390004CADF /* PerfTests */,
 				4CAC010120E187F300656825 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,6 +140,7 @@
 			children = (
 				4CAC010020E187F300656825 /* TSP.app */,
 				4CAC011220E187F800656825 /* TSPTests.xctest */,
+				4CA5E4DE213157390004CADF /* TSPPerfTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +196,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4CA5E4DD213157390004CADF /* TSPPerfTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CA5E4E5213157390004CADF /* Build configuration list for PBXNativeTarget "TSPPerfTests" */;
+			buildPhases = (
+				4CA5E4DA213157390004CADF /* Sources */,
+				4CA5E4DB213157390004CADF /* Frameworks */,
+				4CA5E4DC213157390004CADF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CA5E4E4213157390004CADF /* PBXTargetDependency */,
+			);
+			name = TSPPerfTests;
+			productName = TSPPerfTests;
+			productReference = 4CA5E4DE213157390004CADF /* TSPPerfTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4CAC00FF20E187F300656825 /* TSP */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CAC012620E187F800656825 /* Build configuration list for PBXNativeTarget "TSP" */;
@@ -205,6 +259,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Michael Holmgren";
 				TargetAttributes = {
+					4CA5E4DD213157390004CADF = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					4CAC00FF20E187F300656825 = {
 						CreatedOnToolsVersion = 10.0;
 					};
@@ -228,11 +285,19 @@
 			targets = (
 				4CAC00FF20E187F300656825 /* TSP */,
 				4CAC011120E187F800656825 /* TSPTests */,
+				4CA5E4DD213157390004CADF /* TSPPerfTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4CA5E4DC213157390004CADF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CAC00FE20E187F300656825 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +323,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4CA5E4DA213157390004CADF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CA5E4ED213157C20004CADF /* TSPData.swift in Sources */,
+				4CA5E4E1213157390004CADF /* TSPPerfTests.swift in Sources */,
+				4CA5E4EE213157C50004CADF /* Zimbabwe.swift in Sources */,
+				4CA5E4EB213157BD0004CADF /* Point.swift in Sources */,
+				4CA5E4E9213157B80004CADF /* Opt2.swift in Sources */,
+				4CA5E4EA213157BB0004CADF /* RouteExporter.swift in Sources */,
+				4CA5E4E8213157B60004CADF /* Route.swift in Sources */,
+				4CA5E4EC213157C00004CADF /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CAC00FC20E187F300656825 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +379,11 @@
 			target = 4CAC00FF20E187F300656825 /* TSP */;
 			targetProxy = 4CA5E4D821313DDC0004CADF /* PBXContainerItemProxy */;
 		};
+		4CA5E4E4213157390004CADF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CAC00FF20E187F300656825 /* TSP */;
+			targetProxy = 4CA5E4E3213157390004CADF /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -313,6 +398,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4CA5E4E6213157390004CADF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = PerfTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = MH.TSPPerfTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		4CA5E4E7213157390004CADF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PerfTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = MH.TSPPerfTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		4CAC012420E187F800656825 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -477,6 +600,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MH.TSPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -495,6 +620,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MH.TSPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -502,6 +629,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4CA5E4E5213157390004CADF /* Build configuration list for PBXNativeTarget "TSPPerfTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CA5E4E6213157390004CADF /* Debug */,
+				4CA5E4E7213157390004CADF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4CAC00FB20E187F300656825 /* Build configuration list for PBXProject "TSP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
