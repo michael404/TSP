@@ -13,11 +13,10 @@ enum TSPData {
 extension TSPData {
     
     static func readData(from file: String, flipped: Bool = false) -> [Point] {
+        
+        // Hard-coded to work out of the XCode Derived Data folder.
         let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-            .appendingPathComponent("TSP.app")
-            .appendingPathComponent("Contents")
-            .appendingPathComponent("Resources")
-            .appendingPathComponent("\(file).txt")
+            .appendingPathComponent("TSP.app/Contents/Resources/\(file).txt")
         do {
             let data = try Data.init(contentsOf: url)
             guard let text = String.init(data: data, encoding: .utf8) else {
