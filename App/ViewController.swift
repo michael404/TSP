@@ -30,7 +30,7 @@ class ViewController: NSViewController {
             
             let startTime = CACurrentMediaTime()
             var lastUpdatedTime = startTime
-            self.route.concurrentOpt2 { opt2State in
+            self.route.opt2 { opt2State in
                 if self.shoudUpdateUI(&lastUpdatedTime, opt2State) {
                     let path = self.createPath(from: opt2State.route)
                     let time = Int(CACurrentMediaTime() - startTime)

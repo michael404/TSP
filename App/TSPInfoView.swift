@@ -12,7 +12,7 @@ extension NSText {
     }
     
     func setInitialTSPInfo(route: Route) {
-        string = "\n\(route.distanceDescription)"
+        string = "\n\n\(route.distanceDescription)"
     }
     
     func updateTSPInfo(opt2State: Opt2State, time: Int) {
