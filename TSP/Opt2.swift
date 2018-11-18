@@ -23,7 +23,7 @@ extension Route {
         if (abSq < acSq && cdSq < bdSq) || (abSq < bdSq && cdSq < acSq) { return false }
         
         // Normal path
-        return sqrt(acSq) + sqrt(bdSq) < sqrt(abSq) + sqrt(cdSq)
+        return acSq.squareRoot() + bdSq.squareRoot() < abSq.squareRoot() + cdSq.squareRoot()
     }
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
