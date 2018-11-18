@@ -2,6 +2,7 @@ import Foundation
 
 extension Route {
     
+    @inline(__always)
     private func distanceIsShorterForReversedRoute(between i: Int, and j: Int) -> Bool {
         
         let a = self[i-1]
@@ -9,7 +10,20 @@ extension Route {
         let c = self[j-1]
         let d = j == endIndex ? self[startIndex] : self[j]
         
-        return a.distance(to: c) + b.distance(to: d) < a.distance(to: b) + c.distance(to: d)
+        // The implementation below is a small performance boost compared to the simple verion:
+        // return a.distance(to: c) + b.distance(to: d) < a.distance(to: b) + c.distance(to: d)
+
+        let abSq = a.distanceSquared(to: b)
+        let cdSq = c.distanceSquared(to: d)
+        let acSq = a.distanceSquared(to: c)
+        let bdSq = b.distanceSquared(to: d)
+        
+        // Fast path where we can garantee that the current path is better without
+        // calculating the square root
+        if (abSq < acSq && cdSq < bdSq) || (abSq < bdSq && cdSq < acSq) { return false }
+        
+        // Normal path
+        return sqrt(acSq) + sqrt(bdSq) < sqrt(abSq) + sqrt(cdSq)
     }
     
     mutating func opt2(onUpdate: (Opt2State) -> () = { _ in }) {
