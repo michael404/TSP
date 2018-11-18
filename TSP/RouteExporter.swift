@@ -2,9 +2,9 @@ import Foundation
 
 struct RouteExporter {
     
-    let minX: Float
-    let minY: Float
-    let scale: Float
+    let minX: Double
+    let minY: Double
+    let scale: Double
     
     init(route: Route, max: Int) {
         var points = route.points
@@ -20,7 +20,7 @@ struct RouteExporter {
         let maxY = points.max { $0.y < $1.y }!.y
         
         let largestValue = maxX > maxY ? maxX : maxY
-        scale = Float(max) / largestValue
+        scale = Double(max) / largestValue
     }
     
     func export(_ route: Route) -> [CGPoint] {

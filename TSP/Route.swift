@@ -4,9 +4,9 @@ struct Route: Equatable {
         
     var points: [Point]
     
-    var distance: Float {
+    var distance: Double {
         guard points.count >= 2 else { return 0 }
-        var result: Float = 0.0
+        var result: Double = 0.0
         for i in points.indices.dropLast() {
             result += points[i].distance(to: points[i+1])
         }
@@ -29,7 +29,7 @@ struct Route: Equatable {
         for (lastSortedIndex, firstUnsortedIndex) in zip(indices, indices.dropFirst()) {
             
             var nearestPointIndex = -1
-            var nearestPointDistance = Float.infinity
+            var nearestPointDistance = Double.infinity
             
             for indexCandidate in firstUnsortedIndex..<endIndex {
                 let distanceCandidate = points[lastSortedIndex].distanceSquared(to: points[indexCandidate])
@@ -46,7 +46,7 @@ struct Route: Equatable {
     init(nearestNeighborWithOptimalStartingPositionFrom unsortedPoints: [Point]) {
         self.points = unsortedPoints
         let serialQueue = DispatchQueue(label: "TSP", qos: .userInitiated)
-        var lowestDistance = Float.infinity
+        var lowestDistance = Double.infinity
         DispatchQueue.concurrentPerform(iterations: points.count) { i in
             let newRoute = Route(nearestNeighborFrom: unsortedPoints, startAt: i)
             let newRouteDistance = newRoute.distance
@@ -61,7 +61,7 @@ struct Route: Equatable {
     
     init(bruteforceOptimalRouteFrom unsortedPoints: [Point]) {
         var result: [Point] = []
-        var distanceOfResult = Float.infinity
+        var distanceOfResult = Double.infinity
         var points = unsortedPoints
         Route.bruteforceOptimalRoute(from: &points, startAt: 0, result: &result, distanceOfResult: &distanceOfResult)
         self.points = result
@@ -71,7 +71,7 @@ struct Route: Equatable {
         from points: inout [Point],
         startAt: Int,
         result: inout [Point],
-        distanceOfResult: inout Float
+        distanceOfResult: inout Double
         ) {
         #warning("I think this is implemenation is wrong. Find test data that is correct before trying to fix it.")
         if startAt == points.endIndex {

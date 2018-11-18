@@ -2,20 +2,20 @@ import simd
 
 struct Point: Equatable {
     
-    private let _point: simd_float2
+    private let _point: simd_double2
     
-    var x: Float { return _point.x }
-    var y: Float { return _point.y }
+    var x: Double { return _point.x }
+    var y: Double { return _point.y }
     
-    init(_ x: Float, _ y: Float) {
-        self._point = simd_make_float2(x, y)
+    init(_ x: Double, _ y: Double) {
+        self._point = simd_make_double2(x, y)
     }
     
-    func distance(to other: Point) -> Float {
+    func distance(to other: Point) -> Double {
         return simd_distance(self._point, other._point)
     }
     
-    func distanceSquared(to other: Point) -> Float {
+    func distanceSquared(to other: Point) -> Double {
         return simd_distance_squared(self._point, other._point)
     }
     

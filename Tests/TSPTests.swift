@@ -22,7 +22,7 @@ class TSPTests: XCTestCase {
     
     func testRouteDistance() {
         let route = Route([Point(1,2), Point(3,4), Point(5,6), Point(3,3)])
-        let expected = 11.4985 as Float
+        let expected = 11.4985
         XCTAssertEqual(route.distance, expected, accuracy: 0.1)
     }
     
@@ -38,7 +38,7 @@ class TSPTests: XCTestCase {
     
     func testRouteBruteforce() {
         var route = Route(bruteforceOptimalRouteFrom: [Point(1,2), Point(2.5,4), Point(5,6), Point(3,3)])
-        let expectedDistance: Float = 11.543181
+        let expectedDistance = 11.543181
         XCTAssertEqual(route.distance, expectedDistance, accuracy: 0.01)
         // The exact order can be arbitrary, but opt2 should not change anything
         route.opt2()
