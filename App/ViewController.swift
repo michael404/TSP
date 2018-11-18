@@ -24,7 +24,7 @@ class ViewController: NSViewController {
             self.exporter = RouteExporter(route: self.route, max: 800)
             
             DispatchQueue.main.sync {
-                self.mapView.updateDrawView(self.createPath(from: self.route))
+                self.mapView.updateMapView(path: self.createPath(from: self.route))
                 self.textView.setInitialTSPInfo(route: self.route)
             }
             
@@ -34,8 +34,9 @@ class ViewController: NSViewController {
                 if self.shoudUpdateUI(&lastUpdatedTime, opt2State) {
                     let path = self.createPath(from: opt2State.route)
                     let time = Int(CACurrentMediaTime() - startTime)
+                    let done = opt2State.lastAction == .done
                     DispatchQueue.main.sync { [unowned self] in
-                        self.mapView.updateDrawView(path)
+                        self.mapView.updateMapView(path: path, done: done)
                         self.textView.updateTSPInfo(opt2State: opt2State, time: time)
                     }
                 }
