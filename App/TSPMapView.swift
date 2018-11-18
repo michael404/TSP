@@ -21,15 +21,13 @@ class TSPMapView: NSView {
     }
     
     override func draw(_ dirtyRect: NSRect) {
-        NSColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).setFill()
+        NSColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).setFill()
         dirtyRect.fill()
-        guard let context = NSGraphicsContext.current?.cgContext else {
-            fatalError("Could not get current graphics context")
-        }
+        let context = NSGraphicsContext.current!.cgContext
         context.setLineWidth(1.0)
         switch self.done {
         case false: context.setStrokeColor(NSColor.black.cgColor)
-        case true: context.setStrokeColor(NSColor(red: 0, green: 0.5, blue: 0, alpha: 1).cgColor)
+        case true: context.setStrokeColor(NSColor(red: 0, green: 0.4, blue: 0, alpha: 1).cgColor)
         }
         context.addPath(path)
         context.drawPath(using: .stroke)
