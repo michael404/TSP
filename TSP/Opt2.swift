@@ -8,7 +8,7 @@ extension Route {
         let a = self[i-1]
         let b = self[i]
         let c = self[j-1]
-        let d = j == endIndex ? self[startIndex] : self[j]
+        let d = self[j == endIndex ? startIndex : j]
         
         // The implementation below is a small performance boost compared to the simple verion:
         // return a.distance(to: c) + b.distance(to: d) < a.distance(to: b) + c.distance(to: d)
