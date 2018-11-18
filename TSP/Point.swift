@@ -25,8 +25,6 @@ extension Point: CustomStringConvertible {
     var description: String {
         return "(\(x), \(y))"
     }
-    
-    
 }
 
 extension Point: Hashable {
